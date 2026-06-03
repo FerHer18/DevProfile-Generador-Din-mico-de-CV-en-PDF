@@ -16,12 +16,12 @@ function Crear() {
 
           <h2>Crear CV</h2>
 
-          <Link to="imagen">
-            Imagen Profesional
-          </Link>
-
           <Link to="datos">
             Datos Personales
+          </Link>
+
+          <Link to="imagen">
+            Imagen Profesional
           </Link>
 
           <Link to="habilidades">
@@ -34,10 +34,6 @@ function Crear() {
 
           <Link to="educacion">
             Educación
-          </Link>
-
-          <Link to="cursos">
-            Cursos y Certificaciones
           </Link>
 
           <Link to="idiomas">

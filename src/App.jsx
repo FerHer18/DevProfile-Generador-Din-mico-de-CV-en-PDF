@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+import Home from './pages/Home'
+//import { useState } from 'react'
+=======
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Home from './pages/Home'
@@ -11,11 +15,16 @@ import Proyectos from './pages/Proyectos'
 import Educacion from './pages/Educacion'
 import Cursos from './pages/Cursos'
 import Idiomas from './pages/Idiomas'
+>>>>>>> b4e215febc5921fd81f2cc1e25d3a63c8cd0f8ad
 
 import './App.css'
 
 function App() {
+
   return (
+<<<<<<< HEAD
+    <Home />
+=======
     <BrowserRouter>
 
       <Routes>
@@ -75,6 +84,7 @@ function App() {
       </Routes>
 
     </BrowserRouter>
+>>>>>>> b4e215febc5921fd81f2cc1e25d3a63c8cd0f8ad
   )
 }
 

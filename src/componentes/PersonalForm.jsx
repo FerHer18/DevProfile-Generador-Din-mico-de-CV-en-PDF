@@ -3,63 +3,63 @@ import { validaciones, validarURL} from '../hooks/useFormValidation'
 import { guardarDatosPersonales } from '../hooks/useLocalStorage'
 
 function PersonalForm() {
-    const [datosPersonales, setDatosPersonales] = useState({
-        nombre: "",
-        profesion: "",
-        ciudad: "",
-        correo: "",
-        telefono: "",
-        descripcion: "",
-        enlaces: [],
+  const [datosPersonales, setDatosPersonales] = useState({
+    nombre: "",
+    profesion: "",
+    ciudad: "",
+    correo: "",
+    telefono: "",
+    descripcion: "",
+    enlaces: [],
+  })
+
+  const [nuevoEnlace, setNuevoEnlace] = useState("")
+  const [errores, setErrores] = useState({})
+
+  const handleChange = (e) => {
+    setDatosPersonales({
+        ...datosPersonales,
+        [e.target.name]: e.target.value
     })
+  }
 
-    const [nuevoEnlace, setNuevoEnlace] = useState("")
-    const [errores, setErrores] = useState({})
-
-    const handleChange = (e) => {
-        setDatosPersonales({
-            ...datosPersonales,
-            [e.target.name]: e.target.value
-        })
+  const agregarEnlace = () =>{
+    if (!nuevoEnlace.trim()) return
+    if (!validarURL(nuevoEnlace)) {
+        setErrores({ ...errores, enlace: "URL no válida" })
+        return
+    }
+    if (datosPersonales.enlaces.includes(nuevoEnlace)) {
+        setErrores({ ...errores, enlace: "Este enlace ya fue agregado" })
+        return
     }
 
-    const agregarEnlace = () =>{
-        if (!nuevoEnlace.trim()) return
-        if (!validarURL(nuevoEnlace)) {
-            setErrores({ ...errores, enlace: "URL no válida" })
-            return
-        }
-        if (datosPersonales.enlaces.includes(nuevoEnlace)) {
-            setErrores({ ...errores, enlace: "Este enlace ya fue agregado" })
-            return
-        }
+    setDatosPersonales({ ...datosPersonales, enlaces: [...datosPersonales.enlaces, nuevoEnlace] })
+    setNuevoEnlace("")
 
-        setDatosPersonales({ ...datosPersonales, enlaces: [...datosPersonales.enlaces, nuevoEnlace] })
-        setNuevoEnlace("")
+    const nuevosErrores = {...errores}
+    delete nuevosErrores.enlace
+    setErrores(nuevosErrores)
+  }
 
-        const nuevosErrores = {...errores}
-        delete nuevosErrores.enlace
-        setErrores(nuevosErrores)
+  const eliminarEnlace = (index) => {
+    setDatosPersonales({...datosPersonales, enlaces: datosPersonales.enlaces.filter((_, i) => i !== index)}) //NO se usa elemento por eso _
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const validarCampos = validaciones(datosPersonales)
+
+    if (errores.enlace) {
+        validarCampos.enlace = errores.enlace
     }
+    setErrores(validarCampos)
 
-    const eliminarEnlace = (index) => {
-        setDatosPersonales({...datosPersonales, enlaces: datosPersonales.enlaces.filter((_, i) => i !== index)}) //NO se usa elemento por eso _
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-
-        const validarCampos = validaciones(datosPersonales)
-
-        if (errores.enlace) {
-            validarCampos.enlace = errores.enlace
-        }
-        setErrores(validarCampos)
-
-        if (Object.keys(validarCampos).length === 0) { //No hay errores
-            guardarDatosPersonales(datosPersonales)
-        }   
-    }
+    if (Object.keys(validarCampos).length === 0) { //No hay errores
+        guardarDatosPersonales(datosPersonales)
+    }   
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -99,21 +99,20 @@ function PersonalForm() {
         {errores.descripcion ? <span>{errores.descripcion}</span> : null}
       </div>
 
-      {/* Sección de enlaces */}
       <div>
-            <label>Agregar enlace (GitHub, LinkedIn, etc.)</label>
-            <input value={nuevoEnlace} onChange={(e) => setNuevoEnlace(e.target.value)} placeholder="https://..." />
-            <button type="button" onClick={agregarEnlace}>Agregar</button>
-            {errores.enlace ? <span>{errores.enlace}</span> : null}
+        <label>Agregar enlace (GitHub, LinkedIn, etc.)</label>
+        <input value={nuevoEnlace} onChange={(e) => setNuevoEnlace(e.target.value)} placeholder="https://..." />
+        <button type="button" onClick={agregarEnlace}>Agregar</button>
+        {errores.enlace ? <span>{errores.enlace}</span> : null}
 
-            <ul>
-                {datosPersonales.enlaces.map((link, i) => (
-                    <li key={i}>
-                        {link}
-                        <button type="button" onClick={() => eliminarEnlace(i)}>Eliminar</button>
-                    </li>
-                ))}
-            </ul>
+        <ul>
+          {datosPersonales.enlaces.map((link, i) => (
+            <li key={i}>
+              {link}
+              <button type="button" onClick={() => eliminarEnlace(i)}>Eliminar</button>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <button type="submit">Guardar datos</button>

@@ -19,11 +19,31 @@ export const guardarDatosPersonales = (datos) => {
         JSON.stringify(cvs)
     )
 
-    alert("Datos guardados correctamente, tu ID es:")
+    alert("Datos guardados correctamente")
 }
 
 export const obtenerDatosPersonales = () => {
-    const datos = localStorage.getItem("datosPersonales")
+    return JSON.parse(
+        localStorage.getItem("cvs")
+    ) || []
+}
 
-    return datos ? JSON.parse(datos) : null
+export const guardarProyectos = (proyectoNuevo) => {
+    const cvs = JSON.parse(localStorage.getItem("cvs")) || []
+
+    if (cvs.length === 0) return
+
+    const ultimoCV = cvs[cvs.length - 1]
+
+    if (!ultimoCV.proyectos) {
+        ultimoCV.proyectos = []
+    }
+
+    ultimoCV.proyectos.push(proyectoNuevo)
+
+    localStorage.setItem(
+        "cvs",
+        JSON.stringify(cvs)
+    )
+    alert("Proyecto guardado correctamente")
 }

@@ -1,11 +1,6 @@
 import React, { useState } from 'react'
-
-const validarURL = (url) => {
-  try { new URL(url); return true; }
-  catch { return false; }
-}
-
-const validarCorreo = (correo) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo) //regex
+import { validaciones, validarURL} from '../hooks/useFormValidation'
+import { guardarDatosPersonales } from '../hooks/useLocalStorage'
 
 function PersonalForm() {
     const [datosPersonales, setDatosPersonales] = useState({
@@ -20,29 +15,6 @@ function PersonalForm() {
 
     const [nuevoEnlace, setNuevoEnlace] = useState("")
     const [errores, setErrores] = useState({})
-
-    const validaciones = () =>{
-        const e = {}
-        if (!datosPersonales.nombre.trim()) e.nombre = "Campo obligatorio"
-        else if (datosPersonales.nombre.trim().length < 3) e.nombre = "Nombre debe de contener mínimo 3 carcateres"
-        else if (datosPersonales.nombre.trim().length > 60) e.nombre = "Nombre máximo de 80 caracteres"
-
-        if (!datosPersonales.profesion.trim()) e.profesion = "Campo obligatorio"
-
-        if (!datosPersonales.ciudad.trim()) e.ciudad = "Campo obligatorio"
-
-        if (!datosPersonales.correo.trim()) e.correo = "Campo obligatorio"
-        else if (!validarCorreo(datosPersonales.correo)) e.correo = "Correo no válido"
-
-        if (datosPersonales.telefono &&  !/^\d{10}$/.test(datosPersonales.telefono))
-            e.telefono = "Teléfono no válido"
-
-        if (!datosPersonales.descripcion.trim()) e.descripcion = "Campo obligatorio"
-        else if (datosPersonales.descripcion.trim().length < 20) e.descripcion = "Descripción mínimo de 20 caracteres"
-        else if (datosPersonales.descripcion.trim().length > 300) e.descripcion = "Descripción máximo de 300 caracteres"
-
-        return e
-    }
 
     const handleChange = (e) => {
         setDatosPersonales({
@@ -77,7 +49,7 @@ function PersonalForm() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const validarCampos = validaciones()
+        const validarCampos = validaciones(datosPersonales)
 
         if (errores.enlace) {
             validarCampos.enlace = errores.enlace
@@ -85,14 +57,7 @@ function PersonalForm() {
         setErrores(validarCampos)
 
         if (Object.keys(validarCampos).length === 0) { //No hay errores
-            console.log("Datos:", datosPersonales)
-
-            localStorage.setItem(
-                "datosPersonales",
-                JSON.stringify(datosPersonales)
-            )
-
-            alert("Datos guardados correctamente")
+            guardarDatosPersonales(datosPersonales)
         }   
     }
 

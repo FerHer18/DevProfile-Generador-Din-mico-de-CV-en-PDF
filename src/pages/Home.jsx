@@ -1,8 +1,11 @@
+import { Link } from 'react-router-dom'
+
 import img1 from '../assets/img1.png'
 import img2 from '../assets/img2.png'
 import img3 from '../assets/img3.png'
 
 import Navbar from '../componentes/Navbar'
+import Footer from '../componentes/Footer'
 
 import '../styles/Home.css'
 
@@ -11,6 +14,7 @@ function Home() {
     <>
       <Navbar />
 
+      {/* HERO */}
       <section id="inicio" className="hero">
         <div className="hero-text">
           <h1>Impulsa tu carrera profesional</h1>
@@ -21,10 +25,15 @@ function Home() {
           </p>
 
           <div className="hero-buttons">
-            <button>Crear CV</button>
-            <button className="secondary">
-              Modificar CV
-            </button>
+            <Link to="/crear">
+              <button>Crear CV</button>
+            </Link>
+
+            <Link to="/modificar">
+              <button className="secondary">
+                Modificar CV
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -33,7 +42,8 @@ function Home() {
         </div>
       </section>
 
-      <section id="crear" className="crear-cv">
+      {/* CREAR CV */}
+      <section className="crear-cv">
         <div className="section-image">
           <img src={img1} alt="Crear CV" />
         </div>
@@ -47,11 +57,14 @@ function Home() {
             y fácil de completar.
           </p>
 
-          <button>Crear CV</button>
+          <Link to="/crear">
+            <button>Crear CV</button>
+          </Link>
         </div>
       </section>
 
-      <section id="modificar" className="modificar-cv">
+      {/* MODIFICAR CV */}
+      <section className="modificar-cv">
         <div className="section-content">
           <h2>Modificar un CV</h2>
 
@@ -61,7 +74,9 @@ function Home() {
             y profesional.
           </p>
 
-          <button>Modificar CV</button>
+          <Link to="/modificar">
+            <button>Modificar CV</button>
+          </Link>
         </div>
 
         <div className="section-image">
@@ -69,14 +84,18 @@ function Home() {
         </div>
       </section>
 
-      <section id="informacion" className="informacion">
+      {/* INFORMACIÓN */}
+      <section className="informacion">
         <h2>¿Por qué utilizar DevProfile?</h2>
 
-          <p className="info-text">
-            Este proyecto corresponde al trabajo final de la materia de Tecnologías Web, 
-            en el cual se aplican los conocimientos adquiridos sobre React.
-            El objetivo principal es ofrecer una herramienta que permita crear y administrar currículums profesionales 
-            de manera eficiente, integrando buenas prácticas de desarrollo web moderno.
+        <p className="info-text">
+          Este proyecto corresponde al trabajo final de la materia
+          de Tecnologías Web, en el cual se aplican los conocimientos
+          adquiridos sobre React.
+
+          El objetivo principal es ofrecer una herramienta que permita
+          crear y administrar currículums profesionales de manera eficiente,
+          integrando buenas prácticas de desarrollo web moderno.
         </p>
 
         <div className="cards">
@@ -109,11 +128,7 @@ function Home() {
         </div>
       </section>
 
-      <footer>
-        <p>
-          DevProfile: Generador Dinámico de CV en PDF. 2026 Todos los derechos reservados.
-        </p>
-      </footer>
+      <Footer />
     </>
   )
 }

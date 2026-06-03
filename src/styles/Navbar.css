@@ -4,6 +4,7 @@
   left: 0;
 
   width: 100%;
+  box-sizing: border-box;
 
   display: flex;
   justify-content: space-between;
@@ -27,6 +28,7 @@
 
 .navbar nav {
   display: flex;
+  align-items: center;
   gap: 2rem;
 }
 
@@ -34,9 +36,23 @@
   text-decoration: none;
   color: #4d6657;
   font-weight: 500;
-  transition: 0.3s;
+  transition: color 0.3s ease;
+
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
 }
 
 .navbar a:hover {
   color: #214733;
+  background: rgba(33, 71, 51, 0.08);
 }
+
+.navbar a.active {
+  color: #214733;
+  font-weight: 700;
+}
+
+body {
+  padding-top: 85px;
+}
+

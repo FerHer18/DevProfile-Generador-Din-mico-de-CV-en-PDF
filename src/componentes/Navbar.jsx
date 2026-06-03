@@ -1,20 +1,28 @@
 import '../styles/NavBar.css'
+import { Link } from 'react-router-dom'
 
-function NavBar() {
+function Navbar() {
   return (
     <header className="navbar">
-      <div className="logo">
-        ImpulsaCV
-      </div>
+      
+      <Link to="/" className="logo">
+        DevProfile
+      </Link>
 
       <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#crear">Crear CV</a>
-        <a href="#modificar">Modificar CV</a>
-        <a href="#informacion">Información</a>
+        <Link to="/">Inicio</Link>
+
+        <Link to="/crear">
+          Crear CV
+        </Link>
+
+        <Link to="/modificar">
+          Modificar CV
+        </Link>
       </nav>
+
     </header>
   )
 }
 
-export default NavBar
+export default Navbar

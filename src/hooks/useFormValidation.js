@@ -12,6 +12,7 @@ const validarCorreo = (correo) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)
 
 export const validaciones = (datosPersonales) => {
     const e = {}
+
     if (!datosPersonales.nombre.trim()) e.nombre = "Campo obligatorio"
     else if (datosPersonales.nombre.trim().length < 3) e.nombre = "Nombre debe de contener mínimo 3 caracteres"
     else if (datosPersonales.nombre.trim().length > 60) e.nombre = "Nombre máximo de 60 caracteres"
@@ -42,9 +43,11 @@ export const validarProyecto = (form) => {
     const cvs = JSON.parse(localStorage.getItem("cvs")) || []
     const ultimoCV = cvs[cvs.length - 1]
     const proyectos = ultimoCV?.proyectos || []
+
     const duplicado = proyectos.some(
         p => p.nombre.toLowerCase() === form.nombre.toLowerCase()
     )
+
     if (duplicado) e.nombre = "Ya existe un proyecto con ese nombre"
 
     if (!form.descripcion.trim()) e.descripcion = "La descripción es obligatoria"
@@ -60,4 +63,3 @@ export const validarProyecto = (form) => {
     return e
 }
 
-export { validarURL }

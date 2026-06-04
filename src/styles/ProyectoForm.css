@@ -1,0 +1,127 @@
+.proyecto-form {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.proyecto-form h2 {
+  color: #214733;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.proyecto-form .campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+
+.proyecto-form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.proyecto-form input,
+.proyecto-form textarea {
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #222;
+  background: white;
+  transition: border-color 0.2s;
+  outline: none;
+  font-family: inherit;
+}
+
+.proyecto-form input:focus,
+.proyecto-form textarea:focus {
+  border-color: #214733;
+}
+
+.proyecto-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.proyecto-form .error {
+  color: #1F513B;
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+
+.proyecto-form .btn-agregar {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  background: transparent;
+  border: 2px solid #214733;
+  color: #214733;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.proyecto-form .btn-agregar:hover {
+  background: #214733;
+  color: white;
+}
+
+.proyectos-lista {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.proyectos-lista li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.proyecto-form .btn-eliminar {
+  background: transparent;
+  border: none;
+  color: #1F513B;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.proyecto-form .btn-eliminar:hover {
+  background: #fdecea;
+}
+
+.proyecto-form .btn-principal {
+  width: 100%;
+  padding: 0.9rem;
+  background: #214733;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+
+.proyecto-form .btn-principal:hover {
+  background: #1a3828;
+}

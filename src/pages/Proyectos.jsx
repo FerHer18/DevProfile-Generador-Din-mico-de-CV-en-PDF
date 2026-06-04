@@ -1,6 +1,6 @@
-import ProyectForm from '../componentes/ProjectForm'
+import ProyectoForm from '../componentes/ProyectoForm'
 import { useState } from 'react'
-import '../styles/ProjectForm.css'
+import '../styles/ProyectoForm.css'
 
 function Proyectos() {
   const [proyectos, setProyectos] = useState([])
@@ -8,7 +8,7 @@ function Proyectos() {
     <>
       <h1 style={{color: '#4d6657'}}>Proyectos</h1>
       <br />
-      <ProyectForm 
+      <ProyectoForm 
         proyectos={proyectos}
         onGuardar={setProyectos}
       />

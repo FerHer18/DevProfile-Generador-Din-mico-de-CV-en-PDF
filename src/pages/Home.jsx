@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom'
-
 import img1 from '../assets/img1.png'
 import img2 from '../assets/img2.png'
 import img3 from '../assets/img3.png'
-
 import Navbar from '../componentes/Navbar'
 import Footer from '../componentes/Footer'
+import ThemeToggle from '../componentes/ThemeToggle'
 
 import '../styles/Home.css'
 
@@ -126,6 +125,17 @@ function Home() {
             </p>
           </article>
         </div>
+      </section>
+
+      {/* CAMBIO DE TEMA */}
+      <section className="theme-section">
+        <h2>Personaliza tu experiencia</h2>
+
+        <p>
+          Selecciona el tema visual que prefieras para utilizar la aplicación.
+        </p>
+
+        <ThemeToggle />
       </section>
 
       <Footer />

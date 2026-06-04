@@ -1,0 +1,120 @@
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-mode nav,
+body.dark-mode .navbar,
+body.dark-mode .sidebar {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+body.dark-mode .hero,
+body.dark-mode .crear-cv,
+body.dark-mode .modificar-cv,
+body.dark-mode .informacion,
+body.dark-mode .theme-section,
+body.dark-mode .form-container,
+body.dark-mode .form-section,
+body.dark-mode .form-card,
+body.dark-mode main,
+body.dark-mode section,
+body.dark-mode .content,
+body.dark-mode .crear-layout,
+body.dark-mode .bienvenida-cv {
+  background-color: #202020;
+  color: #ffffff;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode label,
+body.dark-mode strong,
+body.dark-mode li,
+body.dark-mode legend {
+  color: #ffffff !important;
+}
+
+body.dark-mode article,
+body.dark-mode .card,
+body.dark-mode .skill-card,
+body.dark-mode .project-card {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+body.dark-mode form,
+body.dark-mode form *:not(input):not(textarea):not(select):not(option) {
+  color: #ffffff !important;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: #ffffff !important;
+  color: #222222 !important;
+  border: 1px solid #cccccc !important;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: #777777 !important;
+}
+
+body.dark-mode button {
+  background-color: #214733;
+  color: #ffffff;
+}
+
+body.dark-mode a {
+  color: #7ec8ff;
+}
+
+body.dark-mode footer {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+body.dark-mode .cv-preview {
+  background-color: #ffffff;
+  color: #222222;
+}
+
+body.dark-mode .cv-preview h1,
+body.dark-mode .cv-preview h2,
+body.dark-mode .cv-preview h3,
+body.dark-mode .cv-preview p,
+body.dark-mode .cv-preview span,
+body.dark-mode .cv-preview li,
+body.dark-mode .cv-preview label {
+  color: #222222 !important;
+}
+body.dark-mode .modificar-page,
+body.dark-mode .modificar-container {
+  background-color: #202020;
+  color: #ffffff;
+}
+
+body.dark-mode .modificar-container h1,
+body.dark-mode .modificar-container p,
+body.dark-mode .modificar-container label {
+  color: #ffffff !important;
+}
+
+body.dark-mode .modificar-container input {
+  background-color: #ffffff !important;
+  color: #222222 !important;
+  border: 1px solid #cccccc !important;
+}
+
+body.dark-mode .modificar-container button {
+  background-color: #214733;
+  color: #ffffff;
+}

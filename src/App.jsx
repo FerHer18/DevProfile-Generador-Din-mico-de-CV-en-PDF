@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import Home from './pages/Home';
 import Crear from './pages/Crear';
 import Modificar from './pages/Modificar';
@@ -9,13 +8,12 @@ import Habilidades from './pages/Habilidades';
 import Proyectos from './pages/Proyectos';
 import Educacion from './pages/Educacion';
 import Idiomas from './pages/Idiomas';
-
 import './App.css';
+import './styles/dark-mode.css';
 
 function App() {
   return (
     <BrowserRouter>
-
       <Routes>
 
         <Route
@@ -99,7 +97,6 @@ function App() {
         </Route>
 
       </Routes>
-
     </BrowserRouter>
   );
 }

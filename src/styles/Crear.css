@@ -68,3 +68,43 @@
 
   box-sizing: border-box;
 }
+
+.bienvenida-cv {
+  max-width: 800px;
+
+  margin: 0 auto;
+
+  background: white;
+
+  padding: 3rem;
+
+  border-radius: 16px;
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.bienvenida-cv h1 {
+  color: #214733;
+
+  margin-bottom: 1.5rem;
+
+  font-size: 2.5rem;
+
+  text-align: center;
+}
+
+.bienvenida-cv p {
+  color: #4d6657;
+
+  font-size: 1.1rem;
+
+  line-height: 1.8;
+
+  margin-bottom: 1.2rem;
+
+  text-align: justify;
+}
+
+.bienvenida-cv strong {
+  color: #214733;
+}

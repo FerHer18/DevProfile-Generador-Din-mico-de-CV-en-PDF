@@ -60,3 +60,29 @@
 .modificar-container button:hover {
   transform: translateY(-2px);
 }
+
+.modificar-container input {
+  width: 100%;
+
+  max-width: 350px;
+
+  padding: 0.9rem 1rem;
+
+  margin-bottom: 1.5rem;
+
+  border: 1px solid #d3d3d3;
+
+  border-radius: 8px;
+
+  font-size: 1rem;
+
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.modificar-container input:focus {
+  border-color: #214733;
+
+  box-shadow: 0 0 0 3px rgba(33, 71, 51, 0.15);
+}

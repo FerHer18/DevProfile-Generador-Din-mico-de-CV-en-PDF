@@ -63,3 +63,37 @@ export const validarProyecto = (form) => {
     return e
 }
 
+export const validarEducacion = (form) => {
+    const e = {}
+
+    const añoActual = new Date().getFullYear()
+
+    if (!form.institucion.trim()) e.institucion = "Campo obligatorio"
+
+    if (!form.ingreso)e.ingreso = "Campo obligatorio"
+    else if (Number(form.ingreso) > añoActual) e.ingreso = "No puede ser un año futuro"
+
+    if (!form.egreso) e.egreso = "Campo obligatorio"
+    else if (Number(form.egreso) > añoActual) e.egreso = "No puede ser un año futuro"
+
+    if (
+        form.ingreso &&
+        form.egreso &&
+        Number(form.ingreso) === Number(form.egreso)
+    ) {
+        e.egreso = "Ingreso y egreso no pueden ser el mismo año"
+    }
+
+    if (
+        form.ingreso &&
+        form.egreso &&
+        Number(form.egreso) < Number(form.ingreso)
+    ) {
+        e.egreso = "El egreso no puede ser menor al ingreso"
+    }
+
+    return e
+}
+
+export {validarURL}
+

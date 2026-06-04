@@ -1,4 +1,5 @@
-import ProfileImageForm from "./componentes/ProfileImageForm"
+import ProfileImageForm from "../componentes/ProfileImageForm";
+import "../styles/ImagenProfesional.css"
 
 function ImagenProfesional() {
 
@@ -22,9 +23,9 @@ function ImagenProfesional() {
   }
 
   return (
-    <div>
+    <div className="imagen-profesional">
 
-      <h1>Generador de CV</h1>
+      <h1 style={{color: '#4d6657'}}>Foto de Perfil</h1>
       <ProfileImageForm onGuardar={guardarImagen} />
 
     </div>

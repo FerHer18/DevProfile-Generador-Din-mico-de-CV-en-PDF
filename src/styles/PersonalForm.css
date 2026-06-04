@@ -1,0 +1,150 @@
+.personal-form {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 22px;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #dce7dd;
+  box-shadow: 0 4px 12px rgba(31, 81, 59, 0.08);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 18px;
+}
+
+.personal-form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.personal-form label {
+  margin-bottom: 6px;
+  color: #1F513B;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.personal-form input,
+.personal-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d2ddd3;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  background: #fafcfa;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.personal-form input:focus,
+.personal-form textarea:focus {
+  outline: none;
+  border-color: #6FA87D;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(111, 168, 125, 0.15);
+}
+
+.personal-form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.btn-agregar {
+  margin-top: 10px;
+  width: 120px;
+
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+
+  background: #1F513B;
+  color: white;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-agregar:hover {
+  background: #173d2d;
+}
+
+.personal-form ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 12px;
+}
+
+.personal-form li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 12px;
+  margin-bottom: 8px;
+
+  border-radius: 8px;
+  border: 1px solid #dce7dd;
+  background: #f6faf7;
+
+  font-size: 0.85rem;
+  word-break: break-all;
+}
+
+.btn-eliminar {
+  border: none;
+  border-radius: 6px;
+
+  padding: 6px 10px;
+
+  background: #dc3545;
+  color: white;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-eliminar:hover {
+  background: #b52a37;
+}
+
+.btn-principal {
+  grid-column: 1 / -1;
+  justify-self: end;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 20px;
+  background: #6FA87D;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-principal:hover {
+  background: #5c956a;
+}
+
+.error {
+  margin-top: 5px;
+  color: #dc3545;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .personal-form {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width,
+  .btn-principal {
+    grid-column: auto;
+  }
+
+  .btn-agregar {
+    width: 100%;
+  }
+}

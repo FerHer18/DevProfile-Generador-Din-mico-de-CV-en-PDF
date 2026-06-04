@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Crear from './pages/Crear';
 import Modificar from './pages/Modificar';
-import ProfileImageForm from './componentes/ProfileImageForm';
+import ImagenProfesional from './pages/ImagenProfesional';
 import DatosPersonales from './pages/DatosPersonales';
 import Habilidades from './pages/Habilidades';
 import Proyectos from './pages/Proyectos';
@@ -32,7 +32,7 @@ function App() {
         >
           <Route
             path="imagen"
-            element={<ProfileImageForm />}
+            element={<ImagenProfesional />}
           />
 
           <Route
@@ -67,7 +67,7 @@ function App() {
         >
           <Route
             path="imagen"
-            element={<ProfileImageForm />}
+            element={<ImagenProfesional />}
           />
 
           <Route

@@ -133,7 +133,7 @@ function PersonalForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="personal-form" onSubmit={handleSubmit}>
 
       <div>
         <label>Nombre completo *</label>
@@ -145,7 +145,7 @@ function PersonalForm() {
         />
 
         {errores.nombre
-          ? <span>{errores.nombre}</span>
+          ? <span className="error">{errores.nombre}</span>
           : null}
       </div>
 
@@ -159,7 +159,7 @@ function PersonalForm() {
         />
 
         {errores.profesion
-          ? <span>{errores.profesion}</span>
+          ? <span className="error">{errores.profesion}</span>
           : null}
       </div>
 
@@ -173,7 +173,7 @@ function PersonalForm() {
         />
 
         {errores.ciudad
-          ? <span>{errores.ciudad}</span>
+          ? <span className="error">{errores.ciudad}</span>
           : null}
       </div>
 
@@ -188,7 +188,7 @@ function PersonalForm() {
         />
 
         {errores.correo
-          ? <span>{errores.correo}</span>
+          ? <span className="error">{errores.correo}</span>
           : null}
       </div>
 
@@ -202,11 +202,11 @@ function PersonalForm() {
         />
 
         {errores.telefono
-          ? <span>{errores.telefono}</span>
+          ? <span className="error">{errores.telefono}</span>
           : null}
       </div>
 
-      <div>
+      <div className="full-width">
         <label>
           Descripción / Perfil profesional *
         </label>
@@ -218,11 +218,11 @@ function PersonalForm() {
         />
 
         {errores.descripcion
-          ? <span>{errores.descripcion}</span>
+          ? <span className="error">{errores.descripcion}</span>
           : null}
       </div>
 
-      <div>
+      <div className="full-width">
 
         <label>
           Agregar enlace (GitHub, LinkedIn, etc.)
@@ -237,6 +237,7 @@ function PersonalForm() {
         />
 
         <button
+          className="btn-agregar"
           type="button"
           onClick={agregarEnlace}
         >
@@ -244,7 +245,7 @@ function PersonalForm() {
         </button>
 
         {errores.enlace
-          ? <span>{errores.enlace}</span>
+          ? <span className="error">{errores.enlace}</span>
           : null}
 
         <ul>
@@ -257,6 +258,7 @@ function PersonalForm() {
                 {link}
 
                 <button
+                  className="btn-eliminar"
                   type="button"
                   onClick={() =>
                     eliminarEnlace(i)
@@ -274,7 +276,7 @@ function PersonalForm() {
 
       </div>
 
-      <button type="submit">
+      <button type="submit"  className="btn-principal">
         {id
           ? 'Actualizar datos'
           : 'Guardar datos'}

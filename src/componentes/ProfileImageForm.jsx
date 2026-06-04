@@ -38,20 +38,24 @@ function ProfileImageForm({ onGuardar }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Foto de perfil *</label>
-        <input type="file" accept="image/*" onChange={handleArchivo} />
-        {error && <span>{error}</span>}
-      </div>
+    <form className="profile-image-form" onSubmit={handleSubmit}>
+       <div className="card">
+          <div>
+            <label>Agrega una imagen</label>
+            <input type="file" accept="image/*" onChange={handleArchivo} />
+            {error && <span className="error">{error}</span>}
+          </div>
 
-      {imagen && (
-        <img
-          src={imagen}
-          alt="Vista previa"
-          style={{ width: 120, height: 120, objectFit: "cover", borderRadius: "50%" }}
-        />
-      )}
+          {imagen && (
+            <div className="preview">
+              <img
+                src={imagen}
+                alt="Vista previa"
+                style={{ width: 120, height: 120, objectFit: "cover", borderRadius: "50%" }}
+              />
+            </div>
+          )}
+       </div>
 
       <button type="submit">Guardar imagen</button>
     </form>

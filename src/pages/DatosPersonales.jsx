@@ -3,8 +3,8 @@ import '../styles/PersonalForm.css'
 
 function DatosPersonales() {
   return (
-    <div> 
-      <h1 style={{color: '#4d6657'}}>Generador de CV</h1><br />
+    <div>
+      <h1 style={{ color: '#4d6657' }}>Datos Personales</h1>
       <PersonalForm />
     </div>
   )

@@ -1,59 +1,41 @@
 .modificar-page {
   min-height: calc(100vh - 160px);
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   padding: 120px 2rem 4rem;
 }
 
 .modificar-container {
   width: 100%;
   max-width: 700px;
-
   background: white;
-
   padding: 3rem;
-
   border-radius: 16px;
-
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-
   text-align: center;
 }
 
 .modificar-container h1 {
   color: #214733;
-
   margin-bottom: 1rem;
-
   font-size: 2.2rem;
 }
 
 .modificar-container p {
   color: #4d6657;
-
   line-height: 1.6;
-
   margin-bottom: 2rem;
 }
 
 .modificar-container button {
   background: #214733;
-
   color: white;
-
   border: none;
-
   padding: 0.9rem 1.8rem;
-
   border-radius: 8px;
-
   cursor: pointer;
-
   font-size: 1rem;
-
   transition: 0.3s;
 }
 
@@ -63,26 +45,17 @@
 
 .modificar-container input {
   width: 100%;
-
   max-width: 350px;
-
   padding: 0.9rem 1rem;
-
   margin-bottom: 1.5rem;
-
   border: 1px solid #d3d3d3;
-
   border-radius: 8px;
-
   font-size: 1rem;
-
   outline: none;
-
   transition: 0.3s;
 }
 
 .modificar-container input:focus {
   border-color: #214733;
-
   box-shadow: 0 0 0 3px rgba(33, 71, 51, 0.15);
 }

@@ -1,18 +1,8 @@
-import ProyectForm from '../componentes/ProjectForm'
-import { useState } from 'react'
+import '../styles/ProyectoForm.css'
+import ProyectoForm from '../componentes/ProyectoForm'
 
 function Proyectos() {
-  const [proyectos, setProyectos] = useState([])
-  return (
-    <>
-      <h1>Proyectos</h1>
-      <br />
-      <ProyectForm 
-        proyectos={proyectos}
-        onGuardar={setProyectos}
-      />
-    </>
-  )
+  return <ProyectoForm />
 }
 
 export default Proyectos

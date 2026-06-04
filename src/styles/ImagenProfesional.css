@@ -5,14 +5,12 @@
   flex-direction: column;
 }
 
-/* H1 centrado global */
 h1 {
   text-align: center;
   padding-bottom: 30px;
   color: #1F513B;
 }
 
-/* 👇 LA CARD (LO IMPORTANTE) */
 .profile-image-form .card {
   width: 100%;
   max-width: 420px;
@@ -28,7 +26,6 @@ h1 {
   gap: 14px;
 }
 
-/* campo */
 .profile-image-form .field {
   display: flex;
   flex-direction: column;
@@ -37,14 +34,12 @@ h1 {
   width: 100%;
 }
 
-/* label */
 .profile-image-form label {
   color: #1F513B;
   font-weight: 600;
   font-size: 0.95rem;
 }
 
-/* input file */
 .profile-image-form input[type="file"] {
   width: 100%;
   text-align: center;
@@ -57,7 +52,6 @@ h1 {
   cursor: pointer;
 }
 
-/* preview */
 .profile-image-form .preview {
   display: flex;
   justify-content: center;
@@ -74,7 +68,6 @@ h1 {
   box-shadow: 0 4px 10px rgba(31, 81, 59, 0.15);
 }
 
-/* botón */
 .profile-image-form button {
   margin-top: 10px;
   padding: 10px 18px;
@@ -95,7 +88,6 @@ h1 {
   background: #173d2d;
 }
 
-/* error */
 .profile-image-form .error {
   color: #dc3545;
   font-size: 0.85rem;

@@ -12,6 +12,7 @@ import Idiomas from './pages/Idiomas';
 import About from './pages/About';
 import Dashboard from './pages/Dashboard';
 import Editor from './pages/Editor';
+import Preview from './pages/Preview';
 import './App.css';
 import './styles/dark-mode.css';
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/modificar" element={<Modificar />} />
           <Route path="/editor/:id" element={<Editor />} />
+          <Route path="/Preview" element={<Preview />} />
 
           <Route path="/crear" element={<Crear />}>
             <Route path="imagen"      element={<ImagenProfesional />} />

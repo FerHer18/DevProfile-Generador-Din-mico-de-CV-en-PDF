@@ -51,7 +51,7 @@ export const validarProyecto = (form) => {
     if (duplicado) e.nombre = "Ya existe un proyecto con ese nombre"
 
     if (!form.descripcion.trim()) e.descripcion = "La descripción es obligatoria"
-    else if (form.descripcion.trim().length < 10) e.descripcion = "Mínimo 10 caracteres"
+    else if (form.descripcion.trim().length < 20) e.descripcion = "Mínimo 20 caracteres"
     else if (form.descripcion.trim().length > 300) e.descripcion = "Máximo 300 caracteres"
 
     if (!form.tecnologias.trim()) e.tecnologias = "Indica al menos una tecnología"
@@ -70,27 +70,36 @@ export const validarEducacion = (form) => {
 
     if (!form.institucion.trim()) e.institucion = "Campo obligatorio"
 
-    if (!form.ingreso)e.ingreso = "Campo obligatorio"
+    if (!form.ingreso) e.ingreso = "Campo obligatorio"
+    else if (!/^\d{4}$/.test(form.ingreso)) e.ingreso = "El año debe tener exactamente 4 dígitos"
     else if (Number(form.ingreso) > añoActual) e.ingreso = "No puede ser un año futuro"
 
     if (!form.egreso) e.egreso = "Campo obligatorio"
+    else if (!/^\d{4}$/.test(form.egreso)) e.egreso = "El año debe tener exactamente 4 dígitos"
     else if (Number(form.egreso) > añoActual) e.egreso = "No puede ser un año futuro"
 
-    if (
-        form.ingreso &&
-        form.egreso &&
-        Number(form.ingreso) === Number(form.egreso)
-    ) {
+    if (form.ingreso && form.egreso && Number(form.ingreso) === Number(form.egreso)) {
         e.egreso = "Ingreso y egreso no pueden ser el mismo año"
     }
 
-    if (
-        form.ingreso &&
-        form.egreso &&
-        Number(form.egreso) < Number(form.ingreso)
-    ) {
+    if (form.ingreso && form.egreso && Number(form.egreso) < Number(form.ingreso)) {
         e.egreso = "El egreso no puede ser menor al ingreso"
     }
+
+    return e
+}
+
+export const validarIdioma = (form, idiomas) => {
+    const e = {}
+
+    if (!form.idioma.trim()) e.idioma = "Campo obligatorio"
+    else if (form.idioma.trim().length < 4) e.idioma = "Mínimo 4 caracteres"
+    else if (form.idioma.trim().length > 20) e.idioma = "Máximo 20 caracteres"
+
+    if (form.descripcion && form.descripcion.trim().length > 50) e.descripcion = "Máximo 50 caracteres"
+
+    const duplicado = idiomas.some(i => i.idioma.toLowerCase() === form.idioma.trim().toLowerCase())
+    if (duplicado)e.idioma = "Este idioma ya fue agregado"
 
     return e
 }

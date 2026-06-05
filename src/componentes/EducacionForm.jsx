@@ -21,15 +21,27 @@ function EducacionForm() {
     })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
+  const agregar = () => {
     const errores = validarEducacion(form)
 
     setErrores(errores)
+
     if (Object.keys(errores).length > 0) return
 
-    guardarEducacion(form)
+    const duplicado = educaciones.some(
+      edu =>
+        edu.institucion.toLowerCase() === form.institucion.toLowerCase() &&
+        edu.ingreso === form.ingreso &&
+        edu.egreso === form.egreso
+    )
+
+    if (duplicado) {
+      setErrores({
+        institucion: "Esta educación ya fue agregada"
+      })
+      return
+    }
+
     setEducaciones([
       ...educaciones,
       form
@@ -37,6 +49,17 @@ function EducacionForm() {
 
     setForm(registroVacio)
     setErrores({})
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (educaciones.length === 0) {
+      alert("Agrega al menos una educación")
+      return
+    }
+
+    guardarEducacion(educaciones)
   }
 
   const eliminarEducacion = (index) => {
@@ -64,7 +87,8 @@ function EducacionForm() {
         <label>Año de ingreso *</label>
         <input
           name="ingreso"
-          type="number"
+          type="text"
+          maxLength={4}
           value={form.ingreso}
           onChange={handleChange}
         />
@@ -75,14 +99,15 @@ function EducacionForm() {
         <label>Año de egreso *</label>
         <input
           name="egreso"
-          type="number"
+          type="text"
+          maxLength={4}
           value={form.egreso}
           onChange={handleChange}
         />
         {errores.egreso && <span className="error">{errores.egreso}</span>}
       </div>
 
-      <button type="submit">
+      <button className='btn-agregar' type="submit" onClick={agregar}>
         Agregar
       </button>
 
@@ -103,6 +128,8 @@ function EducacionForm() {
           </li>
         ))}
       </ul>
+
+      <button className='btn-principal' type="submit">Guardar y continuar</button>
     </form>
   )
 }

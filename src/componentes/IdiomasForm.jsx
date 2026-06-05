@@ -2,12 +2,15 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { guardarSeccion } from '../services/cvService'
 import { useCV } from '../context/CVContext'
+import { guardarIdiomas } from '../hooks/useLocalStorage'
+import { validarIdioma } from '../hooks/useFormValidation'
 
 const NIVELES = ['Básico', 'Intermedio', 'Avanzado', 'Nativo']
 
 const estadoInicial = {
   idioma: '',
-  nivel: 'Básico'
+  nivel: 'Básico',
+  descripcion: ''
 }
 
 function IdiomasForm() {
@@ -33,11 +36,23 @@ function IdiomasForm() {
   }
 
   const agregar = () => {
-    const e = validar()
+
+    const e = validarIdioma(form, idiomas)
     setErrores(e)
+
     if (Object.keys(e).length > 0) return
-    setIdiomas([...idiomas, { idioma: form.idioma.trim(), nivel: form.nivel }])
+
+    setIdiomas([
+      ...idiomas,
+      {
+        idioma: form.idioma.trim(),
+        nivel: form.nivel,
+        descripcion: form.descripcion.trim()
+      }
+    ])
+
     setForm(estadoInicial)
+    setErrores({})
   }
 
   const eliminar = (index) => {
@@ -46,28 +61,30 @@ function IdiomasForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
     if (idiomas.length === 0) {
-      setErrores({ idioma: 'Agrega al menos un idioma' })
+      setErrores({
+          idioma: "Agrega al menos un idioma"
+      })
       return
     }
-    confirmarGuardado(
-      () => guardarSeccion('idiomas', idiomas),
-      () => navigate('/')
-    )
+
+    guardarIdiomas(idiomas)
+    navigate('/')
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="idiomas-form" onSubmit={handleSubmit}>
       <div>
         <label>Idioma *</label>
         <input
           name="idioma"
           value={form.idioma}
           onChange={handleChange}
-          placeholder="Ej: Inglés, Francés..."
         />
         {errores.idioma && <span className="error">{errores.idioma}</span>}
       </div>
+
       <div>
         <label>Nivel *</label>
         <select name="nivel" value={form.nivel} onChange={handleChange}>
@@ -76,10 +93,29 @@ function IdiomasForm() {
           ))}
         </select>
       </div>
+
+      <div>
+        <label>Descripción o certificación (opcional)</label>
+
+        <input
+          name="descripcion"
+          value={form.descripcion}
+          onChange={handleChange}
+          placeholder="Ej: TOEFL B2, Cambridge C1..."
+        />
+
+        {errores.descripcion && (
+          <span className="error">
+            {errores.descripcion}
+          </span>
+        )}
+      </div>
+
       <button type="button" className="btn-agregar" onClick={agregar}>
         Agregar idioma
       </button>
-      <ul>
+
+      <ul className="idiomas-lista">
         {idiomas.map((item, i) => (
           <li key={i}>
             {item.idioma} — {item.nivel}
@@ -89,9 +125,11 @@ function IdiomasForm() {
           </li>
         ))}
       </ul>
+
       <button type="submit" className="btn-principal">
         Guardar y continuar
       </button>
+
     </form>
   )
 }

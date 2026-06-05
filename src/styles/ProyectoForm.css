@@ -16,30 +16,29 @@
 }
 
 .proyecto-form label {
-  font-size: 0.9rem;
   font-weight: 600;
-  color: #333;
-  margin-bottom: 0.4rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-size: 0.92rem;
+  color: #1F513B;
+  margin-bottom: 6px;
 }
 
 .proyecto-form input,
 .proyecto-form textarea {
   padding: 0.75rem 1rem;
-  border: 1.5px solid #ddd;
+  border: 1px solid #d2ddd3;
   border-radius: 8px;
   font-size: 1rem;
   color: #222;
-  background: white;
-  transition: border-color 0.2s;
+  background: #fafcfa;
+  transition: all 0.2s ease;
   outline: none;
-  font-family: inherit;
 }
 
 .proyecto-form input:focus,
 .proyecto-form textarea:focus {
-  border-color: #214733;
+  border-color: #6FA87D;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(111, 168, 125, 0.15);
 }
 
 .proyecto-form textarea {
@@ -48,9 +47,9 @@
 }
 
 .proyecto-form .error {
-  color: #1F513B;
-  font-size: 0.82rem;
-  margin-top: 0.3rem;
+  margin-top: 5px;
+  color: #dc3545;
+  font-size: 0.8rem;
 }
 
 .proyecto-form .btn-agregar {

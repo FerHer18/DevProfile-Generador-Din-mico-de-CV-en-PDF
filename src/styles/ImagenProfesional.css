@@ -43,11 +43,9 @@ h1 {
 .profile-image-form input[type="file"] {
   width: 100%;
   text-align: center;
-
   padding: 10px;
   border: 1px dashed #6FA87D;
   border-radius: 10px;
-
   background: #f6faf7;
   cursor: pointer;
 }
@@ -60,10 +58,8 @@ h1 {
 .profile-image-form .preview img {
   width: 130px;
   height: 130px;
-
   object-fit: cover;
   border-radius: 50%;
-
   border: 3px solid #6FA87D;
   box-shadow: 0 4px 10px rgba(31, 81, 59, 0.15);
 }
@@ -71,16 +67,12 @@ h1 {
 .profile-image-form button {
   margin-top: 10px;
   padding: 10px 18px;
-
   border: none;
   border-radius: 10px;
-
   background: #1F513B;
   color: white;
-
   font-weight: 600;
   cursor: pointer;
-
   transition: 0.2s;
 }
 

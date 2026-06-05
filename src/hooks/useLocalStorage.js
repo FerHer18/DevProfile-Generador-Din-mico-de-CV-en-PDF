@@ -48,11 +48,9 @@ export const guardarProyectos = (proyectoNuevo) => {
     alert("Proyecto guardado correctamente")
 }
 
-export const guardarEducacion = (educacionNueva) => {
+export const guardarEducacion = (educaciones) => {
 
     const cvs = JSON.parse(localStorage.getItem("cvs")) || []
-
-    console.log(cvs)
 
     if (cvs.length === 0) {
         alert("No existe ningún CV guardado")
@@ -60,17 +58,32 @@ export const guardarEducacion = (educacionNueva) => {
     }
 
     const ultimoCV = cvs[cvs.length - 1]
+    ultimoCV.educacion = educaciones
 
-    if (!ultimoCV.educacion) {
-        ultimoCV.educacion = []
+    localStorage.setItem(
+        "cvs",
+        JSON.stringify(cvs)
+    )
+}
+
+export const guardarIdiomas = (idiomas) => {
+
+    const cvs = JSON.parse(
+        localStorage.getItem("cvs")
+    ) || []
+
+    if (cvs.length === 0) {
+        alert("No existe ningún CV guardado")
+        return
     }
 
-    ultimoCV.educacion.push(educacionNueva)
+    const ultimoCV = cvs[cvs.length - 1]
+    ultimoCV.idiomas = idiomas
 
     localStorage.setItem(
         "cvs",
         JSON.stringify(cvs)
     )
 
-    alert("Educación guardada correctamente")
+    alert("Idiomas guardados correctamente")
 }

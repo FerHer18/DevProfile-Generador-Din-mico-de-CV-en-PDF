@@ -72,7 +72,6 @@ function ProyectoForm() {
           name="nombre"
           value={form.nombre}
           onChange={handleChange}
-          placeholder="Ej: Portfolio Web"
         />
         {errores.nombre && <span className="error">{errores.nombre}</span>}
       </div>
@@ -83,7 +82,6 @@ function ProyectoForm() {
           name="descripcion"
           value={form.descripcion}
           onChange={handleChange}
-          placeholder="Ej: Aplicación web para mostrar mi portafolio personal con React"
         />
         {errores.descripcion && <span className="error">{errores.descripcion}</span>}
       </div>
@@ -151,9 +149,7 @@ function ProyectoForm() {
         ))}
       </ul>
 
-      <button type="submit" className="btn-principal">
-        Guardar y continuar
-      </button>
+      <button type="submit" className="btn-principal">Guardar y continuar</button>
     </form>
   )
 }

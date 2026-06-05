@@ -1,5 +1,5 @@
-.educacion-form {
-  max-width: 650px;
+.idiomas-form {
+  max-width: 750px;
   margin: 0 auto;
   padding: 24px;
   background: #fff;
@@ -11,26 +11,26 @@
   gap: 16px;
 }
 
-.educacion-form h3 {
-  margin: 0;
+.idiomas-form h3 {
   text-align: center;
   color: #1F513B;
-  font-size: 1.4rem;
+  margin: 0 0 10px;
 }
 
-.educacion-form div {
+.idiomas-form div {
   display: flex;
   flex-direction: column;
 }
 
-.educacion-form label {
+.idiomas-form label {
   margin-bottom: 6px;
   color: #1F513B;
   font-weight: 600;
   font-size: 0.92rem;
 }
 
-.educacion-form input {
+.idiomas-form input,
+.idiomas-form select {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid #d2ddd3;
@@ -41,37 +41,21 @@
   transition: all 0.2s ease;
 }
 
-.educacion-form input:focus {
+.idiomas-form input:focus,
+.idiomas-form select:focus {
   outline: none;
   border-color: #6FA87D;
-  background: #fff;
+  background: white;
   box-shadow: 0 0 0 3px rgba(111, 168, 125, 0.15);
 }
 
-.educacion-form .error {
+.error {
   margin-top: 4px;
   color: #dc3545;
   font-size: 0.8rem;
 }
 
-.educacion-form .btn-principal {
-  width: 100%;
-  padding: 0.9rem;
-  background: #214733;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 1rem;
-}
-
-.educacion-form .btn-principal:hover{
-  background: #1a3828;
-}
-
-.educacion-form .btn-agregar {
+.btn-agregar {
   margin-top: 0.5rem;
   padding: 0.6rem 1.4rem;
   background: transparent;
@@ -84,41 +68,30 @@
   transition: background 0.2s, color 0.2s;
 }
 
-.educacion-form .btn-agregar:hover {
+.btn-agregar:hover {
   background: #214733;
   color: white;
 }
 
-.educacion-form button:hover {
-  background: #173d2d;
-}
-
-.educacion-list {
+.idiomas-lista {
   list-style: none;
   padding: 0;
-  margin-top: 20px;
+  margin: 10px 0;
 }
 
-.educacion-list li {
+.idiomas-lista li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin-top: 10px;
   padding: 12px;
-
+  margin-bottom: 10px;
   background: #f6faf7;
   border: 1px solid #dce7dd;
   border-radius: 10px;
-
   box-shadow: 0 3px 8px rgba(111, 168, 125, 0.08);
 }
 
-.educacion-list strong {
-  color: #1F513B;
-}
-
-.educacion-form .btn-eliminar {
+.btn-eliminar {
   background: transparent;
   border: none;
   color: #1F513B;
@@ -130,6 +103,23 @@
   transition: background 0.2s;
 }
 
-.educacion-form .btn-eliminar:hover {
+.btn-eliminar:hover {
   background: #fdecea;
+}
+
+.btn-principal {
+  width: 100%;
+  padding: 0.9rem;
+  background: #214733;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.btn-principal:hover {
+  background: #1a3828;
 }

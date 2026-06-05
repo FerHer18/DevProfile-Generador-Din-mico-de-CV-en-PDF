@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
 import { validarEducacion } from '../hooks/useFormValidation'
 import { guardarEducacion } from '../hooks/useLocalStorage'
 
@@ -10,6 +11,7 @@ const registroVacio = {
 
 function EducacionForm() {
 
+  const { handleConfirmar } = useOutletContext()
   const [form, setForm] = useState(registroVacio)
   const [errores, setErrores] = useState({})
   const [educaciones, setEducaciones] = useState([])
@@ -59,7 +61,7 @@ function EducacionForm() {
       return
     }
 
-    guardarEducacion(educaciones)
+    handleConfirmar(() => guardarEducacion(educaciones))
   }
 
   const eliminarEducacion = (index) => {
@@ -107,7 +109,7 @@ function EducacionForm() {
         {errores.egreso && <span className="error">{errores.egreso}</span>}
       </div>
 
-      <button className='btn-agregar' type="submit" onClick={agregar}>
+      <button className='btn-agregar' type="button" onClick={agregar}>
         Agregar
       </button>
 

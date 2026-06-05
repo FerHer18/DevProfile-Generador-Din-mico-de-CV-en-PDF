@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { guardarSeccion } from '../services/cvService'
-import { useCV } from '../context/CVContext'
 import { guardarIdiomas } from '../hooks/useLocalStorage'
 import { validarIdioma } from '../hooks/useFormValidation'
 
@@ -14,21 +12,10 @@ const estadoInicial = {
 }
 
 function IdiomasForm() {
-  const { confirmarGuardado } = useCV()
   const navigate = useNavigate()
   const [form, setForm] = useState(estadoInicial)
   const [idiomas, setIdiomas] = useState([])
   const [errores, setErrores] = useState({})
-
-  const validar = () => {
-    const e = {}
-    if (!form.idioma.trim()) e.idioma = 'Campo obligatorio'
-    else if (form.idioma.trim().length > 30) e.idioma = 'Máximo 30 caracteres'
-    if (idiomas.map(i => i.idioma.toLowerCase()).includes(form.idioma.trim().toLowerCase())) {
-      e.idioma = 'Este idioma ya fue agregado'
-    }
-    return e
-  }
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -36,7 +23,6 @@ function IdiomasForm() {
   }
 
   const agregar = () => {
-
     const e = validarIdioma(form, idiomas)
     setErrores(e)
 
@@ -63,14 +49,18 @@ function IdiomasForm() {
     e.preventDefault()
 
     if (idiomas.length === 0) {
-      setErrores({
-          idioma: "Agrega al menos un idioma"
-      })
+      setErrores({ idioma: 'Agrega al menos un idioma' })
       return
     }
 
     guardarIdiomas(idiomas)
-    navigate('/')
+
+    const cvs = JSON.parse(localStorage.getItem('cvs')) || []
+    const idCV = cvs[cvs.length - 1]?.id
+
+    alert(`CV generado exitosamente.\nID de tu CV: ${idCV}`)
+
+    navigate('/Preview')
   }
 
   return (
@@ -96,18 +86,14 @@ function IdiomasForm() {
 
       <div>
         <label>Descripción o certificación (opcional)</label>
-
         <input
           name="descripcion"
           value={form.descripcion}
           onChange={handleChange}
           placeholder="Ej: TOEFL B2, Cambridge C1..."
         />
-
         {errores.descripcion && (
-          <span className="error">
-            {errores.descripcion}
-          </span>
+          <span className="error">{errores.descripcion}</span>
         )}
       </div>
 
@@ -127,9 +113,8 @@ function IdiomasForm() {
       </ul>
 
       <button type="submit" className="btn-principal">
-        Guardar y continuar
+        Finalizar
       </button>
-
     </form>
   )
 }

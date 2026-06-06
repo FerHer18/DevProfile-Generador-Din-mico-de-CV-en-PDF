@@ -1,0 +1,198 @@
+.preview-page {
+
+    background: #eef6f0;
+
+    min-height: 100vh;
+
+    padding: 120px 2rem 4rem;
+}
+
+.preview-header {
+
+    text-align: center;
+
+    margin-bottom: 3rem;
+}
+
+.preview-header h1 {
+
+    color: #214733;
+
+    font-size: 3rem;
+
+    margin-bottom: 1rem;
+}
+
+.preview-header p {
+
+    color: #5d7265;
+
+    font-size: 1.1rem;
+}
+
+.cv-container {
+
+    max-width: 950px;
+
+    margin: auto;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 3rem;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.cv-header {
+
+    display: flex;
+
+    gap: 2rem;
+
+    align-items: center;
+
+    padding-bottom: 2rem;
+
+    border-bottom: 2px solid #eef6f0;
+}
+
+.cv-photo {
+
+    width: 150px;
+
+    height: 150px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 4px solid #6ea884;
+}
+
+.cv-header h1 {
+
+    color: #214733;
+
+    font-size: 2.2rem;
+}
+
+.cv-header h3 {
+
+    color: #6ea884;
+
+    margin-top: .5rem;
+}
+
+.cv-section {
+
+    margin-top: 2rem;
+}
+
+.cv-section h2 {
+
+    color: #214733;
+
+    margin-bottom: 1rem;
+
+    border-left: 5px solid #6ea884;
+
+    padding-left: 12px;
+}
+
+.cv-section p {
+
+    color: #5d7265;
+
+    line-height: 1.8;
+}
+
+.skills-grid {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.skill-tag {
+
+    background: #dceee2;
+
+    color: #214733;
+
+    padding: 10px 16px;
+
+    border-radius: 50px;
+
+    font-weight: 600;
+}
+
+.project-card {
+
+    background: #f8faf8;
+
+    padding: 1rem;
+
+    border-radius: 12px;
+
+    margin-bottom: 1rem;
+}
+
+.project-card h3 {
+
+    color: #214733;
+
+    margin-bottom: .5rem;
+}
+
+.cv-section a {
+
+    display: block;
+
+    color: #6ea884;
+
+    margin-bottom: .5rem;
+
+    text-decoration: none;
+}
+
+.cv-section a:hover {
+
+    text-decoration: underline;
+}
+
+.pdf-button-container{
+
+  display:flex;
+
+  justify-content:center;
+
+  margin-top:3rem;
+}
+
+.pdf-button-container button{
+
+  background:#6ea884;
+
+  color:white;
+
+  padding:14px 28px;
+
+  border:none;
+
+  border-radius:8px;
+
+  font-size:1rem;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.pdf-button-container button:hover{
+
+  background:#5b9471;
+}

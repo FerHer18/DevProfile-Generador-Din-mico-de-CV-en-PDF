@@ -1,0 +1,121 @@
+.habilidades-form {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #dce7dd;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(111, 168, 125, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.habilidades-form h3 {
+  text-align: center;
+  color: #1F513B;
+  margin: 0 0 10px;
+}
+
+.habilidades-form label {
+  margin-bottom: 6px;
+  color: #1F513B;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.habilidades-form input,
+.habilidades-form select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d2ddd3;
+  border-radius: 8px;
+  background: #fafcfa;
+  font-size: 0.92rem;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.habilidades-form input:focus,
+.habilidades-form select:focus {
+  outline: none;
+  border-color: #6FA87D;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(111, 168, 125, 0.15);
+}
+
+.habilidades-form .error {
+  margin-top: 4px;
+  color: #dc3545;
+  font-size: 0.8rem;
+}
+
+.habilidades-form .btn-agregar {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  background: transparent;
+  border: 2px solid #214733;
+  color: #214733;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.habilidades-form .btn-agregar:hover {
+  background: #214733;
+  color: white;
+}
+
+.habilidades-lista {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.habilidades-lista li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #f6faf7;
+  border: 1px solid #dce7dd;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(111, 168, 125, 0.08);
+}
+
+.habilidades-form .btn-eliminar {
+  background: transparent;
+  border: none;
+  color: #1F513B;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.habilidades-form .btn-eliminar:hover {
+  background: #fdecea;
+}
+
+.habilidades-form .btn-principal {
+  width: 100%;
+  padding: 0.9rem;
+  background: #214733;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+
+.habilidades-form .btn-principal:hover {
+  background: #1a3828;
+}

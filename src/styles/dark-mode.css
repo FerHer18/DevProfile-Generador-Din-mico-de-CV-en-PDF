@@ -96,6 +96,7 @@ body.dark-mode .cv-preview li,
 body.dark-mode .cv-preview label {
   color: #222222 !important;
 }
+
 body.dark-mode .modificar-page,
 body.dark-mode .modificar-container {
   background-color: #202020;
@@ -117,4 +118,67 @@ body.dark-mode .modificar-container input {
 body.dark-mode .modificar-container button {
   background-color: #214733;
   color: #ffffff;
+}
+
+.theme-toggle-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: #214733;
+  color: white;
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .personal-form,
+body.dark-mode .profile-image-form .card,
+body.dark-mode .habilidades-form,
+body.dark-mode .proyecto-form,
+body.dark-mode .educacion-form,
+body.dark-mode .idiomas-form {
+  background-color: #2a2a2a !important;
+  border-color: #444 !important;
+}
+
+body.dark-mode .personal-form li,
+body.dark-mode .educacion-list li,
+body.dark-mode .idiomas-lista li,
+body.dark-mode .habilidades-lista li,
+body.dark-mode .proyectos-lista li {
+  background-color: #333 !important;
+  border-color: #555 !important;
+}
+
+body.dark-mode .sidebar-item {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+body.dark-mode .sidebar-item.activo {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
+}
+
+body.dark-mode .content {
+  background-color: #181818 !important;
+}
+
+body.dark-mode .bienvenida-cv,
+body.dark-mode .profile-image-form .card {
+  background-color: #2a2a2a !important;
+  box-shadow: none !important;
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import '../styles/dark-mode.css'
 
 function ThemeToggle() {
   const [darkMode, setDarkMode] = useState(
@@ -16,8 +17,8 @@ function ThemeToggle() {
   }, [darkMode]);
 
   return (
-    <button onClick={() => setDarkMode(!darkMode)}>
-      {darkMode ? "Modo Claro" : "Modo Oscuro"}
+    <button className="theme-toggle-btn" onClick={() => setDarkMode(!darkMode)}>
+      {darkMode ? "☀️" : "🌙"}
     </button>
   );
 }

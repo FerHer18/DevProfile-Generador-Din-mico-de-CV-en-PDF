@@ -45,7 +45,7 @@ function HabilidadesForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="habilidades-form" onSubmit={handleSubmit}>
       <div>
         <label>Agregar habilidad *</label>
         <input
@@ -59,7 +59,7 @@ function HabilidadesForm() {
         </button>
         {errores.habilidad && <span className="error">{errores.habilidad}</span>}
       </div>
-      <ul>
+      <ul className="habilidades-lista">
         {habilidades.map((h, i) => (
           <li key={i}>
             {h}

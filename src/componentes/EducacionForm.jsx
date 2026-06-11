@@ -92,6 +92,22 @@ function EducacionForm() {
         {errores.egreso && <span className="error">{errores.egreso}</span>}
       </div>
 
+      <div className="checkbox-container">
+        <input
+          type="checkbox"
+          checked={form.enProceso}
+          onChange={(e) =>
+            setForm({
+              ...form,
+              enProceso: e.target.checked,
+              egreso: e.target.checked ? "En proceso" : ""
+            })
+          }
+        />
+
+        <label>Actualmente estoy estudiando aquí</label>
+      </div>
+
       <button className="btn-agregar" type="button" onClick={agregar}>
         Agregar
       </button>

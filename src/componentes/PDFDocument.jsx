@@ -10,74 +10,109 @@ import {
 const styles = StyleSheet.create({
 
   page: {
+    padding: 30,
+    fontSize: 11,
+    fontFamily: "Helvetica",
+    color: "#222"
+  },
+
+  header: {
     flexDirection: "row",
-    backgroundColor: "#ffffff"
+    justifyContent: "space-between",
+    alignItems: "flex-start"
   },
 
-  sidebar: {
-    width: "30%",
-    backgroundColor: "#214733",
-    color: "white",
-    padding: 20
-  },
-
-  content: {
-    width: "70%",
-    padding: 25
+  headerInfo: {
+    flex: 1,
+    paddingRight: 15
   },
 
   photo: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    alignSelf: "center",
-    marginBottom: 15
+    width: 90,
+    height: 90,
+    borderRadius: 45
   },
 
   name: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 5
-  },
-
-  profession: {
-    fontSize: 12,
-    marginBottom: 20
-  },
-
-  sidebarTitle: {
-    fontSize: 13,
-    fontWeight: "bold",
-    marginTop: 15,
-    marginBottom: 8
-  },
-
-  sidebarText: {
-    fontSize: 10,
     marginBottom: 4
   },
 
+  profession: {
+    fontSize: 13,
+    fontWeight: "bold",
+    marginBottom: 6
+  },
+
+  contact: {
+    fontSize: 10,
+    color: "#444"
+  },
+
+  divider: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#BDBDBD",
+    marginVertical: 12
+  },
+
   section: {
-    marginBottom: 18
+    marginBottom: 12
   },
 
   sectionTitle: {
-    fontSize: 16,
-    color: "#214733",
-    marginBottom: 8,
-    borderBottom: 1,
-    paddingBottom: 4
+    fontSize: 14,
+    fontWeight: "bold",
+    marginBottom: 8
   },
 
   text: {
-    fontSize: 11,
     lineHeight: 1.5
   },
 
+  educationRow: {
+    flexDirection: "row",
+    marginBottom: 10
+  },
+
+  year: {
+    width: 120,
+    fontWeight: "bold"
+  },
+
+  educationInfo: {
+    flex: 1
+  },
+
+  bold: {
+    fontWeight: "bold"
+  },
+
+  project: {
+    marginBottom: 10
+  },
+
   projectTitle: {
-    fontSize: 12,
     fontWeight: "bold",
-    marginBottom: 3
+    marginBottom: 4
+  },
+
+  bullet: {
+    marginLeft: 10,
+    lineHeight: 1.5
+  },
+
+  twoColumns: {
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+
+  column: {
+    width: "48%"
+  },
+
+  item: {
+    marginBottom: 4
   }
 
 });
@@ -85,175 +120,198 @@ const styles = StyleSheet.create({
 function PDFDocument({ cv }) {
 
   return (
-
     <Document>
 
-        <Page
-            size="A4"
-            style={styles.page}
-        >
+      <Page
+        size="A4"
+        style={styles.page}
+      >
 
-            <View style={styles.sidebar}>
+        {/* HEADER */}
 
-            {cv.foto && (
+        <View style={styles.header}>
 
-                <Image
-                src={cv.foto}
-                style={styles.photo}
-                />
-
-            )}
+          <View style={styles.headerInfo}>
 
             <Text style={styles.name}>
-                {cv.nombre}
+              {cv.nombre?.toUpperCase()}
             </Text>
 
             <Text style={styles.profession}>
-                {cv.profesion}
+              {cv.profesion?.toUpperCase()}
             </Text>
 
-            <Text style={styles.sidebarTitle}>
-                CONTACTO
+            <Text style={styles.contact}>
+              {cv.ciudad}
+              {" | "}
+              {cv.correo}
+              {" | "}
+              {cv.telefono}
             </Text>
 
-            <Text style={styles.sidebarText}>
-                {cv.correo}
-            </Text>
+            {cv.enlaces?.length > 0 && (
+              <Text style={styles.contact}>
+                {cv.enlaces.join(" | ")}
+              </Text>
+            )}
 
-            <Text style={styles.sidebarText}>
-                {cv.telefono}
-            </Text>
+          </View>
 
-            <Text style={styles.sidebarText}>
-                {cv.ciudad}
-            </Text>
+          {cv.foto && (
+            <Image
+              src={cv.foto}
+              style={styles.photo}
+            />
+          )}
 
-            <Text style={styles.sidebarTitle}>
-                ENLACES
-                </Text>
+        </View>
 
-                {cv.enlaces?.map((link,index)=>(
-                <Text
-                    key={index}
-                    style={styles.sidebarText}
-                >
-                    {link}
-                </Text>
-                ))}
+        <View style={styles.divider} />
 
-            <Text style={styles.sidebarTitle}>
-                HABILIDADES
-            </Text>
+        {/* PERFIL */}
 
-            {cv.habilidades?.map((hab,index)=>(
+        <View style={styles.section}>
 
-                <Text
-                key={index}
-                style={styles.sidebarText}
-                >
-                • {hab}
-                </Text>
+          <Text style={styles.sectionTitle}>
+            PERFIL PROFESIONAL
+          </Text>
 
-            ))}
+          <Text style={styles.text}>
+            {cv.descripcion}
+          </Text>
 
-            <Text style={styles.sidebarTitle}>
-                IDIOMAS
-            </Text>
+        </View>
 
-            {cv.idiomas?.map((idioma,index)=>(
+        <View style={styles.divider} />
 
-                <Text
-                key={index}
-                style={styles.sidebarText}
-                >
-                {idioma.idioma}
-                {" - "}
-                {idioma.nivel}
-                </Text>
+        {/* EDUCACIÓN */}
 
-            ))}
+        <View style={styles.section}>
 
-            </View>
+          <Text style={styles.sectionTitle}>
+            EDUCACIÓN
+          </Text>
 
-            <View style={styles.content}>
+          {cv.educacion?.map((edu, index) => (
 
             <View
-                style={{
-                    width: 80,
-                    height: 4,
-                    backgroundColor: "#6ea884",
-                    marginBottom: 15
-                }}
-            />
+              key={index}
+              style={styles.educationRow}
+            >
 
-            <View style={styles.section}>
+              <Text style={styles.year}>
+                {edu.ingreso} - {edu.egreso}
+              </Text>
 
-                <Text style={styles.sectionTitle}>
-                PERFIL PROFESIONAL
+              <View style={styles.educationInfo}>
+
+                <Text style={styles.bold}>
+                  {cv.profesion}
                 </Text>
 
-                <Text style={styles.text}>
-                {cv.descripcion}
+                <Text>
+                  {edu.institucion}
                 </Text>
+
+              </View>
 
             </View>
 
-            <View style={styles.section}>
+          ))}
 
-                <Text style={styles.sectionTitle}>
-                PROYECTOS
+        </View>
+
+        <View style={styles.divider} />
+
+        {/* PROYECTOS */}
+
+        <View style={styles.section}>
+
+          <Text style={styles.sectionTitle}>
+            PROYECTOS
+          </Text>
+
+          {cv.proyectos?.map((proyecto, index) => (
+
+            <View
+              key={index}
+              style={styles.project}
+            >
+
+              <Text style={styles.projectTitle}>
+                {proyecto.nombre}
+              </Text>
+
+              <Text style={styles.bullet}>
+                • {proyecto.descripcion}
+              </Text>
+
+            </View>
+
+          ))}
+
+        </View>
+
+        <View style={styles.divider} />
+
+        {/* HABILIDADES + IDIOMAS */}
+
+        <View style={styles.twoColumns}>
+
+          <View style={styles.column}>
+
+            <Text style={styles.sectionTitle}>
+              HABILIDADES
+            </Text>
+
+            {cv.habilidades?.map((hab, index) => (
+
+              <Text
+                key={index}
+                style={styles.item}
+              >
+                • {hab}
+              </Text>
+
+            ))}
+
+          </View>
+
+          <View style={styles.column}>
+
+            <Text style={styles.sectionTitle}>
+              IDIOMAS
+            </Text>
+
+            {cv.idiomas?.map((idioma, index) => (
+
+              <View key={index}>
+
+                <Text style={styles.item}>
+                  {idioma.idioma}
                 </Text>
 
-                {cv.proyectos?.map((proyecto,index)=>(
-
-                <View key={index}>
-
-                    <Text style={styles.projectTitle}>
-                    {proyecto.nombre}
-                    </Text>
-
-                    <Text style={styles.text}>
-                    {proyecto.descripcion}
-                    </Text>
-
-                </View>
-
-                ))}
-
-            </View>
-
-            <View style={styles.section}>
-
-                <Text style={styles.sectionTitle}>
-                EDUCACIÓN
+                <Text style={styles.item}>
+                  {idioma.nivel}
                 </Text>
 
-                {cv.educacion?.map((edu,index)=>(
+                {idioma.descripcion && (
+                  <Text style={styles.item}>
+                    {idioma.descripcion}
+                  </Text>
+                )}
 
-                <View key={index}>
+              </View>
 
-                    <Text style={styles.projectTitle}>
-                    {edu.institucion}
-                    </Text>
+            ))}
 
-                    <Text style={styles.text}>
-                    {edu.ingreso}
-                    {" - "}
-                    {edu.egreso}
-                    </Text>
+          </View>
 
-                </View>
+        </View>
 
-                ))}
-
-            </View>
-
-            </View>
-
-        </Page>
+      </Page>
 
     </Document>
-
   );
 }
 

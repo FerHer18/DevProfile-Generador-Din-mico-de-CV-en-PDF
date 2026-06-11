@@ -3,6 +3,7 @@ import { useNavigate, useParams, useOutletContext } from 'react-router-dom'
 import { guardarSeccion, actualizarCV, obtenerCVPorId } from '../services/cvService'
 import { useCV } from '../context/CVContext'
 import SkillForm from '../componentes/SkillForm'
+import '../styles/Habilidades.css'
 
 function HabilidadesForm() {
   const { confirmarGuardado } = useCV()

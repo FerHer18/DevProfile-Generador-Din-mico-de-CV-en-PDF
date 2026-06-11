@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { guardarSeccion } from '../services/cvService'
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams, useOutletContext } from 'react-router-dom'
+import { guardarSeccion, actualizarCV, obtenerCVPorId } from '../services/cvService'
 import { validarProyecto } from '../hooks/useFormValidation'
 import { useCV } from '../context/CVContext'
 import { guardarProyectos } from '../hooks/useLocalStorage'
@@ -17,16 +17,22 @@ const estadoInicial = {
 function ProyectoForm() {
   const { confirmarGuardado } = useCV()
   const navigate = useNavigate()
-
+  const { id } = useParams()
+  const { handleConfirmar } = useOutletContext() || {}
   const [form, setForm] = useState(estadoInicial)
-
-  const [proyectos, setProyectos] = useState(() => {
-    const cvs = JSON.parse(localStorage.getItem("cvs")) || []
-    const ultimoCV = cvs[cvs.length - 1]
-    return ultimoCV?.proyectos || []
-  })
-
+  const [proyectos, setProyectos] = useState([])
   const [errores, setErrores] = useState({})
+
+  useEffect(() => {
+    if (id) {
+      const cv = obtenerCVPorId(id)
+      if (cv?.proyectos) setProyectos(cv.proyectos)
+    } else {
+      const cvs = JSON.parse(localStorage.getItem("cvs")) || []
+      const ultimoCV = cvs[cvs.length - 1]
+      if (ultimoCV?.proyectos) setProyectos(ultimoCV.proyectos)
+    }
+  }, [id])
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -37,24 +43,25 @@ function ProyectoForm() {
     const e = validarProyecto(form)
     setErrores(e)
     if (Object.keys(e).length > 0) return
-
     const nuevos = [...proyectos, form]
     setProyectos(nuevos)
     guardarProyectos(form)
-
     setForm(estadoInicial)
   }
 
   const eliminar = (index) => {
-    const nuevos = proyectos.filter((_, i) => i !== index)
-    setProyectos(nuevos)
+    setProyectos(proyectos.filter((_, i) => i !== index))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    if (proyectos.length === 0) {
+    if (!id && proyectos.length === 0) {
       setErrores({ nombre: 'Agrega al menos un proyecto' })
+      return
+    }
+
+    if (id) {
+      handleConfirmar(() => actualizarCV(id, { proyectos }))
       return
     }
 
@@ -68,21 +75,13 @@ function ProyectoForm() {
     <form className="proyecto-form" onSubmit={handleSubmit}>
       <div className="campo">
         <label>Nombre del proyecto *</label>
-        <input
-          name="nombre"
-          value={form.nombre}
-          onChange={handleChange}
-        />
+        <input name="nombre" value={form.nombre} onChange={handleChange} />
         {errores.nombre && <span className="error">{errores.nombre}</span>}
       </div>
 
       <div className="campo">
         <label>Descripción *</label>
-        <textarea
-          name="descripcion"
-          value={form.descripcion}
-          onChange={handleChange}
-        />
+        <textarea name="descripcion" value={form.descripcion} onChange={handleChange} />
         {errores.descripcion && <span className="error">{errores.descripcion}</span>}
       </div>
 
@@ -138,18 +137,16 @@ function ProyectoForm() {
         {proyectos.map((p, i) => (
           <li key={i}>
             {p.nombre}
-            <button
-              type="button"
-              className="btn-eliminar"
-              onClick={() => eliminar(i)}
-            >
+            <button type="button" className="btn-eliminar" onClick={() => eliminar(i)}>
               Eliminar
             </button>
           </li>
         ))}
       </ul>
 
-      <button type="submit" className="btn-principal">Guardar y continuar</button>
+      <button type="submit" className="btn-principal">
+        {id ? 'Actualizar proyectos' : 'Guardar y continuar'}
+      </button>
     </form>
   )
 }

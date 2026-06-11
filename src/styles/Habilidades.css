@@ -25,7 +25,8 @@
 }
 
 .habilidades-form input,
-.habilidades-form select {
+.habilidades-form select,
+.habilidades-form textarea {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid #d2ddd3;
@@ -37,11 +38,14 @@
 }
 
 .habilidades-form input:focus,
-.habilidades-form select:focus {
+.habilidades-form select:focus,
+.habilidades-form textarea:focus {
   outline: none;
   border-color: #6FA87D;
   background: #fff;
   box-shadow: 0 0 0 3px rgba(111, 168, 125, 0.15);
+  min-height: 100px;
+  resize: vertical;
 }
 
 .habilidades-form .error {

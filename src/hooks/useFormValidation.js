@@ -14,6 +14,8 @@ export const validaciones = (datosPersonales) => {
     const e = {}
 
     if (!datosPersonales.nombre.trim()) e.nombre = "Campo obligatorio"
+    else if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:\s+[A-Za-zÁÉÍÓÚáéíóúÑñ]+)+$/.test(datosPersonales.nombre.trim())) 
+        e.nombre = "Debe ingresar al menos nombre y apellido"
     else if (datosPersonales.nombre.trim().length < 3) e.nombre = "Nombre debe de contener mínimo 3 caracteres"
     else if (datosPersonales.nombre.trim().length > 60) e.nombre = "Nombre máximo de 60 caracteres"
 
@@ -74,18 +76,16 @@ export const validarEducacion = (form) => {
     else if (!/^\d{4}$/.test(form.ingreso)) e.ingreso = "El año debe tener exactamente 4 dígitos"
     else if (Number(form.ingreso) > añoActual) e.ingreso = "No puede ser un año futuro"
 
-    if (!form.egreso) e.egreso = "Campo obligatorio"
-    else if (!/^\d{4}$/.test(form.egreso)) e.egreso = "El año debe tener exactamente 4 dígitos"
-    else if (Number(form.egreso) > añoActual) e.egreso = "No puede ser un año futuro"
+    if (!form.enProceso) {
+        if (!form.egreso) e.egreso = "Campo obligatorio"
+        else if (!/^\d{4}$/.test(form.egreso)) e.egreso = "El año debe tener exactamente 4 dígitos"
+        else if (Number(form.egreso) > añoActual) e.egreso = "No puede ser un año futuro"
 
-    if (form.ingreso && form.egreso && Number(form.ingreso) === Number(form.egreso)) {
-        e.egreso = "Ingreso y egreso no pueden ser el mismo año"
+        if (form.ingreso && form.egreso && Number(form.ingreso) === Number(form.egreso)) 
+            e.egreso = "Ingreso y egreso no pueden ser el mismo año"
+        if (form.ingreso && form.egreso && Number(form.egreso) < Number(form.ingreso)) 
+            e.egreso = "El egreso no puede ser menor al ingreso"
     }
-
-    if (form.ingreso && form.egreso && Number(form.egreso) < Number(form.ingreso)) {
-        e.egreso = "El egreso no puede ser menor al ingreso"
-    }
-
     return e
 }
 

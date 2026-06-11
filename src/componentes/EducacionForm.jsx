@@ -6,7 +6,8 @@ import { guardarEducacion } from '../hooks/useLocalStorage'
 const registroVacio = {
   institucion: "",
   ingreso: "",
-  egreso: ""
+  egreso: "",
+  enProceso: false
 }
 
 function EducacionForm() {
@@ -104,9 +105,25 @@ function EducacionForm() {
           type="text"
           maxLength={4}
           value={form.egreso}
+          disabled={form.enProceso}
           onChange={handleChange}
         />
         {errores.egreso && <span className="error">{errores.egreso}</span>}
+      </div>
+
+      <div className="checkbox-container">
+          <input
+            type="checkbox"
+            checked={form.enProceso}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                enProceso: e.target.checked,
+                egreso: e.target.checked ? "En proceso" : ""
+              })
+            }
+          />
+          <label>Actualmente estoy estudiando aquí</label>
       </div>
 
       <button className='btn-agregar' type="button" onClick={agregar}>
@@ -119,7 +136,7 @@ function EducacionForm() {
             <div>
               <strong>{edu.institucion}</strong>
               <br />
-              {edu.ingreso} - {edu.egreso}
+              {edu.ingreso} - {edu.enProceso ? "En proceso" : edu.egreso}
             </div>
 
             <button

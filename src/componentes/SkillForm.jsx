@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import SkillCard from './SkillCard'
 
+const CATEGORIAS = ['Técnica', 'Blanda']
 const NIVELES = ['Básico', 'Intermedio', 'Avanzado', 'Experto']
 
 function SkillForm({ habilidades, onAgregar, onEliminar }) {
   const [nombre, setNombre] = useState('')
+  const [categoria, setCategoria] = useState('Técnica')
+  const [descripcion, setDescripcion] = useState('')
   const [nivel, setNivel] = useState('Básico')
   const [error, setError] = useState('')
 
@@ -21,8 +24,21 @@ function SkillForm({ habilidades, onAgregar, onEliminar }) {
       setError('Esta habilidad ya fue agregada')
       return
     }
-    onAgregar({ nombre: nombre.trim(), nivel })
+
+    if (!descripcion.trim()) {
+      setError('La descripción es obligatoria')
+      return
+    }
+
+    onAgregar({ 
+      nombre: nombre.trim(),
+      categoria,
+      nivel,
+      descripcion: descripcion.trim()
+     })
     setNombre('')
+    setCategoria('Técnica')
+    setDescripcion('')
     setNivel('Básico')
     setError('')
   }
@@ -39,12 +55,31 @@ function SkillForm({ habilidades, onAgregar, onEliminar }) {
         />
       </div>
       <div>
+        <label>Categoría *</label>
+        <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+          {CATEGORIAS.map(c => (
+            <option key={c} value={c}>{c}</option>
+          ))}
+        </select>
+      </div>
+      <div>
         <label>Nivel *</label>
         <select value={nivel} onChange={(e) => setNivel(e.target.value)}>
           {NIVELES.map(n => (
             <option key={n} value={n}>{n}</option>
           ))}
         </select>
+      </div>
+      <div>
+        <label>Descripción *</label>
+        <textarea
+          value={descripcion}
+          onChange={(e) => {
+            setDescripcion(e.target.value)
+            setError('')
+          }}
+          placeholder="Describe tu experiencia con esta habilidad"
+        />
       </div>
       <button type="button" className="btn-agregar" onClick={handleAgregar}>
         Agregar

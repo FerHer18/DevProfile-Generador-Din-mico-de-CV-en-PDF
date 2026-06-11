@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import { useOutletContext } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useParams, useOutletContext } from 'react-router-dom'
 import { validarEducacion } from '../hooks/useFormValidation'
 import { guardarEducacion } from '../hooks/useLocalStorage'
+import { actualizarCV, obtenerCVPorId } from '../services/cvService'
 
 const registroVacio = {
   institucion: "",
@@ -11,24 +12,26 @@ const registroVacio = {
 }
 
 function EducacionForm() {
-
   const { handleConfirmar } = useOutletContext()
+  const { id } = useParams()
   const [form, setForm] = useState(registroVacio)
   const [errores, setErrores] = useState({})
   const [educaciones, setEducaciones] = useState([])
 
+  useEffect(() => {
+    if (id) {
+      const cv = obtenerCVPorId(id)
+      if (cv?.educacion) setEducaciones(cv.educacion)
+    }
+  }, [id])
+
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    })
+    setForm({ ...form, [e.target.name]: e.target.value })
   }
 
   const agregar = () => {
     const errores = validarEducacion(form)
-
     setErrores(errores)
-
     if (Object.keys(errores).length > 0) return
 
     const duplicado = educaciones.some(
@@ -39,94 +42,57 @@ function EducacionForm() {
     )
 
     if (duplicado) {
-      setErrores({
-        institucion: "Esta educación ya fue agregada"
-      })
+      setErrores({ institucion: "Esta educación ya fue agregada" })
       return
     }
 
-    setEducaciones([
-      ...educaciones,
-      form
-    ])
-
+    setEducaciones([...educaciones, form])
     setForm(registroVacio)
     setErrores({})
   }
 
+  const eliminarEducacion = (index) => {
+    setEducaciones(educaciones.filter((_, i) => i !== index))
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    if (educaciones.length === 0) {
+    if (!id && educaciones.length === 0) {
       alert("Agrega al menos una educación")
+      return
+    }
+
+    if (id) {
+      handleConfirmar(() => actualizarCV(id, { educacion: educaciones }))
       return
     }
 
     handleConfirmar(() => guardarEducacion(educaciones))
   }
 
-  const eliminarEducacion = (index) => {
-    setEducaciones(
-      educaciones.filter((_, i) => i !== index)
-    )
-  }
-
   return (
     <form className="educacion-form" onSubmit={handleSubmit}>
-
       <h3>Agregar educación</h3>
 
       <div>
         <label>Institución *</label>
-        <input
-          name="institucion"
-          value={form.institucion}
-          onChange={handleChange}
-        />
+        <input name="institucion" value={form.institucion} onChange={handleChange} />
         {errores.institucion && <span className="error">{errores.institucion}</span>}
       </div>
 
       <div>
         <label>Año de ingreso *</label>
-        <input
-          name="ingreso"
-          type="text"
-          maxLength={4}
-          value={form.ingreso}
-          onChange={handleChange}
-        />
+        <input name="ingreso" type="text" maxLength={4} value={form.ingreso} onChange={handleChange} />
         {errores.ingreso && <span className="error">{errores.ingreso}</span>}
       </div>
 
       <div>
         <label>Año de egreso *</label>
-        <input
-          name="egreso"
-          type="text"
-          maxLength={4}
-          value={form.egreso}
-          disabled={form.enProceso}
-          onChange={handleChange}
-        />
+        <input name="egreso" type="text" maxLength={4} value={form.egreso} onChange={handleChange} />
         {errores.egreso && <span className="error">{errores.egreso}</span>}
       </div>
 
-      <div className="checkbox-container">
-          <input
-            type="checkbox"
-            checked={form.enProceso}
-            onChange={(e) =>
-              setForm({
-                ...form,
-                enProceso: e.target.checked,
-                egreso: e.target.checked ? "En proceso" : ""
-              })
-            }
-          />
-          <label>Actualmente estoy estudiando aquí</label>
-      </div>
-
-      <button className='btn-agregar' type="button" onClick={agregar}>
+      <button className="btn-agregar" type="button" onClick={agregar}>
         Agregar
       </button>
 
@@ -138,17 +104,16 @@ function EducacionForm() {
               <br />
               {edu.ingreso} - {edu.enProceso ? "En proceso" : edu.egreso}
             </div>
-
-            <button
-              type="button"
-              className="btn-eliminar"
-              onClick={() => eliminarEducacion(index)}
-            >Eliminar</button>
+            <button type="button" className="btn-eliminar" onClick={() => eliminarEducacion(index)}>
+              Eliminar
+            </button>
           </li>
         ))}
       </ul>
 
-      <button className='btn-principal' type="submit">Guardar y continuar</button>
+      <button className="btn-principal" type="submit">
+        {id ? 'Actualizar educación' : 'Guardar y continuar'}
+      </button>
     </form>
   )
 }

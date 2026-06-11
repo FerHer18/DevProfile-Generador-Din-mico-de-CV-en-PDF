@@ -1,13 +1,22 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { guardarSeccion } from '../services/cvService'
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams, useOutletContext } from 'react-router-dom'
+import { guardarSeccion, actualizarCV, obtenerCVPorId } from '../services/cvService'
 import { useCV } from '../context/CVContext'
 
 function ProfileImageForm() {
   const { updateSection, confirmarGuardado } = useCV()
   const navigate = useNavigate()
+  const { id } = useParams()
+  const { handleConfirmar } = useOutletContext() || {}
   const [imagen, setImagen] = useState('')
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (id) {
+      const cv = obtenerCVPorId(id)
+      if (cv?.foto) setImagen(cv.foto)
+    }
+  }, [id])
 
   const handleArchivo = (e) => {
     const archivo = e.target.files[0]
@@ -36,6 +45,12 @@ function ProfileImageForm() {
       setError('Debes seleccionar una imagen')
       return
     }
+
+    if (id) {
+      handleConfirmar(() => actualizarCV(id, { foto: imagen }))
+      return
+    }
+
     confirmarGuardado(
       () => { updateSection('imagen', imagen); guardarSeccion('foto', imagen) },
       () => navigate('../habilidades')
@@ -61,7 +76,7 @@ function ProfileImageForm() {
         )}
       </div>
       <button type="submit" className="btn-principal">
-        Guardar y continuar
+        {id ? 'Actualizar imagen' : 'Guardar y continuar'}
       </button>
     </form>
   )

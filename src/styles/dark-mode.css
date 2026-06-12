@@ -82,19 +82,32 @@ body.dark-mode footer {
   color: #ffffff;
 }
 
-body.dark-mode .cv-preview {
-  background-color: #ffffff;
-  color: #222222;
+body.dark-mode .cv-container {
+  background-color: #ffffff !important;
+  color: #222222 !important;
 }
 
-body.dark-mode .cv-preview h1,
-body.dark-mode .cv-preview h2,
-body.dark-mode .cv-preview h3,
-body.dark-mode .cv-preview p,
-body.dark-mode .cv-preview span,
-body.dark-mode .cv-preview li,
-body.dark-mode .cv-preview label {
+body.dark-mode .cv-container section {
+  background-color: #ffffff !important;
   color: #222222 !important;
+}
+
+body.dark-mode .cv-container h1,
+body.dark-mode .cv-container h2,
+body.dark-mode .cv-container h3,
+body.dark-mode .cv-container p,
+body.dark-mode .cv-container span,
+body.dark-mode .cv-container li {
+  color: #222222 !important;
+}
+
+body.dark-mode .cv-container a {
+  color: #214733 !important;
+}
+
+body.dark-mode .cv-container .project-card {
+  background-color: #f6faf7 !important;
+  color: #222 !important;
 }
 
 body.dark-mode .modificar-page,

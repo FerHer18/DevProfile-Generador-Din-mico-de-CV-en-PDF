@@ -6,9 +6,11 @@ import '../styles/Crear.css'
 function PaginaEditar() {
   return (
     <>
-      <Navbar />
-      <Editor />
-      <Footer />
+      <div className="pagina-editor">
+        <Navbar />
+        <Editor />
+        <Footer />
+      </div>
     </>
   )
 }

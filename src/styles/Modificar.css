@@ -1,5 +1,5 @@
 .modificar-page {
-  min-height: calc(100vh - 85px);
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,4 +58,10 @@
 .modificar-container input:focus {
   border-color: #214733;
   box-shadow: 0 0 0 3px rgba(33, 71, 51, 0.15);
+}
+
+.modificar-page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

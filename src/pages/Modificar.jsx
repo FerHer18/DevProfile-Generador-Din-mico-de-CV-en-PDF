@@ -25,7 +25,7 @@ function Modificar() {
   };
 
   return (
-    <>
+    <div className="modificar-page-container">
       <Navbar />
 
       <section className="modificar-page">
@@ -54,7 +54,7 @@ function Modificar() {
       </section>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

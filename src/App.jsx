@@ -11,6 +11,7 @@ import Educacion from './pages/Educacion';
 import Idiomas from './pages/Idiomas';
 import Editor from './pages/Editor';
 import Preview from './pages/Preview';
+import ThemeToggle from './componentes/ThemeToggle'
 import './App.css';
 import './styles/dark-mode.css';
 
@@ -42,7 +43,9 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <ThemeToggle />
     </CVProvider>
+    
   );
 }
 

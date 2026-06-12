@@ -74,10 +74,10 @@ function ProfileImageForm() {
             />
           </div>
         )}
-      </div>
-      <button type="submit" className="btn-principal">
+        <button type="submit" className="btn-principal">
         {id ? 'Actualizar imagen' : 'Guardar y continuar'}
       </button>
+      </div>
     </form>
   )
 }

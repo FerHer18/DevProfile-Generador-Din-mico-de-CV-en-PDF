@@ -4,10 +4,11 @@ body:has(.crear-layout) {
 
 .crear-layout {
   display: flex;
-  min-height: 100vh;
+  /*min-height: 100vh;*/
+  align-items: stretch;
   margin: 0;
   padding: 0;
-  align-items: flex-start;
+  /*align-items: flex-start;*/
 }
 
 .sidebar {
@@ -19,10 +20,10 @@ body:has(.crear-layout) {
   gap: 0.5rem;
   position: sticky;
   top: 85px;
-  height: 100vh;
+  /*min-height: 100vh;*/
   overflow-y: auto;
   box-sizing: border-box;
-  margin-top: -85px;
+  /*.bienvenida-cv: -85px;*/
   padding-top: calc(2rem + 85px);
 }
 

@@ -33,7 +33,7 @@ function Crear() {
   }
 
   return (
-    <>
+    <div className="crear-page">
       <Navbar />
       <section className="crear-layout">
         <aside className="sidebar">
@@ -71,7 +71,7 @@ function Crear() {
         </main>
       </section>
       <Footer />
-    </>
+    </div>
   )
 }
 

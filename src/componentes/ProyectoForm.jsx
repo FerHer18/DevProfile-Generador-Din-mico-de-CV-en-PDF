@@ -80,7 +80,6 @@ function ProyectoForm() {
           name="nombre"
           value={form.nombre}
           onChange={handleChange}
-          placeholder="Ej: Rediseño de marca, App de finanzas, Campaña publicitaria"
         />
         {errores.nombre && <span className="error">{errores.nombre}</span>}
       </div>
@@ -102,7 +101,6 @@ function ProyectoForm() {
           name="descripcion"
           value={form.descripcion}
           onChange={handleChange}
-          placeholder="¿En qué consistió el proyecto y cuál fue tu contribución?"
         />
         {errores.descripcion && <span className="error">{errores.descripcion}</span>}
       </div>

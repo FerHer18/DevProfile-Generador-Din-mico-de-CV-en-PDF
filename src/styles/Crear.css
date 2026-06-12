@@ -3,12 +3,11 @@ body:has(.crear-layout) {
 }
 
 .crear-layout {
+  flex: 1;
   display: flex;
-  /*min-height: 100vh;*/
   align-items: stretch;
   margin: 0;
   padding: 0;
-  /*align-items: flex-start;*/
 }
 
 .sidebar {
@@ -18,12 +17,8 @@ body:has(.crear-layout) {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  position: sticky;
-  top: 85px;
-  /*min-height: 100vh;*/
-  overflow-y: auto;
   box-sizing: border-box;
-  /*.bienvenida-cv: -85px;*/
+  min-height: 100%;
   padding-top: calc(2rem + 85px);
 }
 
@@ -80,7 +75,6 @@ body:has(.crear-layout) {
 .content {
   flex: 1;
   padding: 3rem;
-  min-height: calc(100vh - 85px);
   background: #f5f5f5;
   box-sizing: border-box;
 }
@@ -111,4 +105,16 @@ body:has(.crear-layout) {
 
 .bienvenida-cv strong {
   color: #214733;
+}
+
+.pagina-editor {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.crear-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

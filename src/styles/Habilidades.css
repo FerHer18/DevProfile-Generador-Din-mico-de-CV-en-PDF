@@ -17,6 +17,11 @@
   margin: 0 0 10px;
 }
 
+.habilidades-form div {
+  display: flex;
+  flex-direction: column;
+}
+
 .habilidades-form label {
   margin-bottom: 6px;
   color: #1F513B;
@@ -126,3 +131,7 @@
 .habilidades-form .btn-principal:hover {
   background: #1a3828;
 }
+
+.skill-form > div {
+  margin-bottom: 14px;
+} /* Agrega espacio entre los campos del formulario de habilidades * /

@@ -70,7 +70,6 @@ function Crear() {
           )}
         </main>
       </section>
-      <Footer />
     </>
   )
 }

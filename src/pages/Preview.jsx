@@ -7,7 +7,6 @@ import "../styles/Preview.css";
 function Preview() {
     return (
         <>
-            <Navbar />
 
             <main className="preview-page">
 
@@ -22,8 +21,6 @@ function Preview() {
                 <CVPreview />
 
             </main>
-
-            <Footer />
         </>
     );
 }

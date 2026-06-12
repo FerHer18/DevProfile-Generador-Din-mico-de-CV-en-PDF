@@ -33,7 +33,6 @@ function Editor() {
 
   return (
     <>
-      <Navbar />
       <section className="crear-layout">
         <aside className="sidebar">
           <h2>Editar CV</h2>
@@ -56,7 +55,6 @@ function Editor() {
           <Outlet context={{ handleConfirmar, id }} />
         </main>
       </section>
-      <Footer />
     </>
   )
 }

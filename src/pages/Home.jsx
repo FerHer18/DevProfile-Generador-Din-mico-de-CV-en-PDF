@@ -10,7 +10,6 @@ import '../styles/Home.css'
 function Home() {
   return (
     <>
-      <Navbar />
 
       <section id="inicio" className="hero">
         <div className="hero-text">
@@ -69,7 +68,6 @@ function Home() {
         </div>
       </section>
 
-      <Footer />
       <ThemeToggle />
     </>
   )

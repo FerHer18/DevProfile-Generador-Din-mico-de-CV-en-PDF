@@ -1,9 +1,9 @@
 .modificar-page {
-  min-height: calc(100vh - 160px);
+  min-height: calc(100vh - 85px);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 120px 2rem 4rem;
+  padding: 2rem;
 }
 
 .modificar-container {

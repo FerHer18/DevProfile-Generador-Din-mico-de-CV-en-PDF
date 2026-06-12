@@ -1,32 +1,39 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { guardarSeccion } from '../services/cvService'
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams, useOutletContext } from 'react-router-dom'
+import { guardarSeccion, actualizarCV, obtenerCVPorId } from '../services/cvService'
 import { validarProyecto } from '../hooks/useFormValidation'
 import { useCV } from '../context/CVContext'
 import { guardarProyectos } from '../hooks/useLocalStorage'
 
 const estadoInicial = {
   nombre: '',
+  rol: '',
   descripcion: '',
-  tecnologias: '',
-  urlRepo: '',
-  urlDeploy: '',
+  herramientas: '',
+  resultado: '',
+  url: '',
   imagen: ''
 }
 
 function ProyectoForm() {
   const { confirmarGuardado } = useCV()
   const navigate = useNavigate()
-
+  const { id } = useParams()
+  const { handleConfirmar } = useOutletContext() || {}
   const [form, setForm] = useState(estadoInicial)
-
-  const [proyectos, setProyectos] = useState(() => {
-    const cvs = JSON.parse(localStorage.getItem("cvs")) || []
-    const ultimoCV = cvs[cvs.length - 1]
-    return ultimoCV?.proyectos || []
-  })
-
+  const [proyectos, setProyectos] = useState([])
   const [errores, setErrores] = useState({})
+
+  useEffect(() => {
+    if (id) {
+      const cv = obtenerCVPorId(id)
+      if (cv?.proyectos) setProyectos(cv.proyectos)
+    } else {
+      const cvs = JSON.parse(localStorage.getItem('cvs')) || []
+      const ultimoCV = cvs[cvs.length - 1]
+      if (ultimoCV?.proyectos) setProyectos(ultimoCV.proyectos)
+    }
+  }, [id])
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -37,24 +44,25 @@ function ProyectoForm() {
     const e = validarProyecto(form)
     setErrores(e)
     if (Object.keys(e).length > 0) return
-
     const nuevos = [...proyectos, form]
     setProyectos(nuevos)
     guardarProyectos(form)
-
     setForm(estadoInicial)
   }
 
   const eliminar = (index) => {
-    const nuevos = proyectos.filter((_, i) => i !== index)
-    setProyectos(nuevos)
+    setProyectos(proyectos.filter((_, i) => i !== index))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    if (proyectos.length === 0) {
+    if (!id && proyectos.length === 0) {
       setErrores({ nombre: 'Agrega al menos un proyecto' })
+      return
+    }
+
+    if (id) {
+      handleConfirmar(() => actualizarCV(id, { proyectos }))
       return
     }
 
@@ -72,8 +80,20 @@ function ProyectoForm() {
           name="nombre"
           value={form.nombre}
           onChange={handleChange}
+          placeholder="Ej: Rediseño de marca, App de finanzas, Campaña publicitaria"
         />
         {errores.nombre && <span className="error">{errores.nombre}</span>}
+      </div>
+
+      <div className="campo">
+        <label>Tu rol *</label>
+        <input
+          name="rol"
+          value={form.rol}
+          onChange={handleChange}
+          placeholder="Ej: Líder de proyecto, Diseñador, Colaborador, Freelance"
+        />
+        {errores.rol && <span className="error">{errores.rol}</span>}
       </div>
 
       <div className="campo">
@@ -82,52 +102,42 @@ function ProyectoForm() {
           name="descripcion"
           value={form.descripcion}
           onChange={handleChange}
+          placeholder="¿En qué consistió el proyecto y cuál fue tu contribución?"
         />
         {errores.descripcion && <span className="error">{errores.descripcion}</span>}
       </div>
 
       <div className="campo">
-        <label>Tecnologías *</label>
+        <label>Resultado o logro</label>
         <input
-          name="tecnologias"
-          value={form.tecnologias}
+          name="resultado"
+          value={form.resultado}
           onChange={handleChange}
-          placeholder="Ej: React, Node.js, MongoDB"
+          placeholder="Ej: Aumenté ventas un 30%, entregado antes de deadline, 500 usuarios"
         />
-        {errores.tecnologias && <span className="error">{errores.tecnologias}</span>}
+        {errores.resultado && <span className="error">{errores.resultado}</span>}
       </div>
 
       <div className="campo">
-        <label>URL Repositorio</label>
+        <label>Herramientas o habilidades usadas</label>
         <input
-          name="urlRepo"
-          value={form.urlRepo}
+          name="herramientas"
+          value={form.herramientas}
           onChange={handleChange}
-          placeholder="Ej: https://github.com/usuario/proyecto"
+          placeholder="Ej: Figma, Excel, Photoshop, React, AutoCAD..."
         />
-        {errores.urlRepo && <span className="error">{errores.urlRepo}</span>}
+        {errores.herramientas && <span className="error">{errores.herramientas}</span>}
       </div>
 
       <div className="campo">
-        <label>URL Deploy</label>
+        <label>Enlace del proyecto</label>
         <input
-          name="urlDeploy"
-          value={form.urlDeploy}
+          name="url"
+          value={form.url}
           onChange={handleChange}
-          placeholder="Ej: https://mi-proyecto.netlify.app"
+          placeholder="Ej: behance.net/proyecto, github.com/repo, drive.google.com/..."
         />
-        {errores.urlDeploy && <span className="error">{errores.urlDeploy}</span>}
-      </div>
-
-      <div className="campo">
-        <label>URL Imagen</label>
-        <input
-          name="imagen"
-          value={form.imagen}
-          onChange={handleChange}
-          placeholder="Ej: https://imagen-del-proyecto.png"
-        />
-        {errores.imagen && <span className="error">{errores.imagen}</span>}
+        {errores.url && <span className="error">{errores.url}</span>}
       </div>
 
       <button type="button" className="btn-agregar" onClick={agregar}>
@@ -137,19 +147,17 @@ function ProyectoForm() {
       <ul className="proyectos-lista">
         {proyectos.map((p, i) => (
           <li key={i}>
-            {p.nombre}
-            <button
-              type="button"
-              className="btn-eliminar"
-              onClick={() => eliminar(i)}
-            >
+            <strong>{p.nombre}</strong> — {p.rol}
+            <button type="button" className="btn-eliminar" onClick={() => eliminar(i)}>
               Eliminar
             </button>
           </li>
         ))}
       </ul>
 
-      <button type="submit" className="btn-principal">Guardar y continuar</button>
+      <button type="submit" className="btn-principal">
+        {id ? 'Actualizar proyectos' : 'Guardar y continuar'}
+      </button>
     </form>
   )
 }

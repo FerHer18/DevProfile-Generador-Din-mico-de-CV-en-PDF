@@ -3,10 +3,10 @@ import '../styles/Educacion.css'
 
 function Educacion() {
   return (
-    <>
-      <h1 style={{color: '#4d6657'}}>Educación</h1>
+    <div style={{ paddingTop: '1.5rem' }}>
+      <h1 style={{ color: '#4d6657', marginBottom: '1.5rem' }}>Educación</h1>
       <EducacionForm />
-    </>
+    </div>
   )
 }
 

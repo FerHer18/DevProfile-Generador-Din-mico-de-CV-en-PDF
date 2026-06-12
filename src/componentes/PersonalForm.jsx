@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useOutletContext } from 'react-router-dom'
 import { validaciones, validarURL } from '../hooks/useFormValidation'
 import { guardarDatosPersonales } from '../hooks/useLocalStorage'
 import { obtenerCVPorId, actualizarCV } from '../services/cvService'
@@ -9,6 +9,7 @@ function PersonalForm() {
   const { id } = useParams()
   const navigate = useNavigate()
   const { confirmarGuardado } = useCV()
+  const { handleConfirmar } = useOutletContext() || {}
 
   const estadoInicial = {
     nombre: '',
@@ -80,11 +81,7 @@ function PersonalForm() {
     if (Object.keys(validarCampos).length > 0) return
 
     if (id) {
-      const confirmado = window.confirm('¿Seguro que deseas actualizar estos datos?')
-      if (confirmado) {
-        actualizarCV(id, datosPersonales)
-        alert('Datos actualizados correctamente')
-      }
+      handleConfirmar(() => actualizarCV(id, datosPersonales))
       return
     }
 

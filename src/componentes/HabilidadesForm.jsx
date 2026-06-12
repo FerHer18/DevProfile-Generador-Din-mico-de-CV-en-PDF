@@ -1,43 +1,36 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { guardarSeccion } from '../services/cvService'
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams, useOutletContext } from 'react-router-dom'
+import { guardarSeccion, actualizarCV, obtenerCVPorId } from '../services/cvService'
 import { useCV } from '../context/CVContext'
+import SkillForm from '../componentes/SkillForm'
+import '../styles/Habilidades.css'
 
 function HabilidadesForm() {
   const { confirmarGuardado } = useCV()
   const navigate = useNavigate()
-  const [habilidad, setHabilidad] = useState('')
+  const { id } = useParams()
+  const { handleConfirmar } = useOutletContext() || {}
   const [habilidades, setHabilidades] = useState([])
-  const [errores, setErrores] = useState({})
 
-  const agregar = () => {
-    if (!habilidad.trim()) {
-      setErrores({ habilidad: 'Campo obligatorio' })
-      return
+  useEffect(() => {
+    if (id) {
+      const cv = obtenerCVPorId(id)
+      if (cv?.habilidades) setHabilidades(cv.habilidades)
     }
-    if (habilidad.trim().length > 40) {
-      setErrores({ habilidad: 'Máximo 40 caracteres' })
-      return
-    }
-    if (habilidades.map(h => h.toLowerCase()).includes(habilidad.trim().toLowerCase())) {
-      setErrores({ habilidad: 'Esta habilidad ya fue agregada' })
-      return
-    }
-    setHabilidades([...habilidades, habilidad.trim()])
-    setHabilidad('')
-    setErrores({})
-  }
+  }, [id])
 
-  const eliminar = (index) => {
-    setHabilidades(habilidades.filter((_, i) => i !== index))
-  }
+  const agregar = (h) => setHabilidades([...habilidades, h])
+  const eliminar = (i) => setHabilidades(habilidades.filter((_, idx) => idx !== i))
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (habilidades.length === 0) {
-      setErrores({ habilidad: 'Agrega al menos una habilidad' })
+    if (!id && habilidades.length === 0) return
+
+    if (id) {
+      handleConfirmar(() => actualizarCV(id, { habilidades }))
       return
     }
+
     confirmarGuardado(
       () => guardarSeccion('habilidades', habilidades),
       () => navigate('../proyectos')
@@ -45,32 +38,10 @@ function HabilidadesForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Agregar habilidad *</label>
-        <input
-          type="text"
-          value={habilidad}
-          onChange={(e) => { setHabilidad(e.target.value); setErrores({}) }}
-          placeholder="Ej: React, Photoshop..."
-        />
-        <button type="button" className="btn-agregar" onClick={agregar}>
-          Agregar
-        </button>
-        {errores.habilidad && <span className="error">{errores.habilidad}</span>}
-      </div>
-      <ul>
-        {habilidades.map((h, i) => (
-          <li key={i}>
-            {h}
-            <button type="button" className="btn-eliminar" onClick={() => eliminar(i)}>
-              Eliminar
-            </button>
-          </li>
-        ))}
-      </ul>
+    <form className="habilidades-form" onSubmit={handleSubmit}>
+      <SkillForm habilidades={habilidades} onAgregar={agregar} onEliminar={eliminar} />
       <button type="submit" className="btn-principal">
-        Guardar y continuar
+        {id ? 'Actualizar habilidades' : 'Guardar y continuar'}
       </button>
     </form>
   )

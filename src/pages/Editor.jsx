@@ -1,36 +1,9 @@
-import { Outlet, useNavigate, useLocation, useParams } from 'react-router-dom'
-import { useCV } from '../context/CVContext'
 import Navbar from '../componentes/Navbar'
 import Footer from '../componentes/Footer'
+import Editor from '../componentes/Editor'
 import '../styles/Crear.css'
 
-const SECCIONES = [
-  { ruta: 'datos',       label: 'Datos Personales' },
-  { ruta: 'imagen',      label: 'Imagen Profesional' },
-  { ruta: 'habilidades', label: 'Habilidades' },
-  { ruta: 'proyectos',   label: 'Proyectos' },
-  { ruta: 'educacion',   label: 'Educación' },
-  { ruta: 'idiomas',     label: 'Idiomas' },
-]
-
-function Editor() {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const { id } = useParams()
-  const { confirmarGuardado } = useCV()
-
-  const seccionActualIndex = SECCIONES.findIndex(s =>
-    location.pathname.endsWith(s.ruta)
-  )
-
-  const handleConfirmar = (guardarFn) => {
-    const siguiente = SECCIONES[seccionActualIndex + 1]
-    confirmarGuardado(guardarFn, () => {
-      if (siguiente) navigate(`/editar/${id}/${siguiente.ruta}`)
-      else navigate(`/preview/${id}`)
-    })
-  }
-
+function PaginaEditar() {
   return (
     <>
       <section className="crear-layout">
@@ -55,8 +28,11 @@ function Editor() {
           <Outlet context={{ handleConfirmar, id }} />
         </main>
       </section>
+      <Navbar />
+      <Editor />
+      <Footer />
     </>
   )
 }
 
-export default Editor
+export default PaginaEditar

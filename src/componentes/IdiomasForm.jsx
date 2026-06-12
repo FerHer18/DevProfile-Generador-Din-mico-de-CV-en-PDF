@@ -66,7 +66,7 @@ function IdiomasForm() {
     const cvs = JSON.parse(localStorage.getItem('cvs')) || []
     const idCV = cvs[cvs.length - 1]?.id
     alert(`CV generado exitosamente.\nID de tu CV: ${idCV}`)
-    navigate('/Preview')
+    navigate(`/preview/${idCV}`)
   }
 
   return (

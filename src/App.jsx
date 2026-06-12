@@ -9,8 +9,6 @@ import Habilidades from './pages/Habilidades';
 import Proyectos from './pages/Proyectos';
 import Educacion from './pages/Educacion';
 import Idiomas from './pages/Idiomas';
-import About from './pages/About';
-import Dashboard from './pages/Dashboard';
 import Editor from './pages/Editor';
 import Preview from './pages/Preview';
 import Navbar from './componentes/Navbar';

@@ -37,32 +37,34 @@ export const validaciones = (datosPersonales) => {
 }
 
 export const validarProyecto = (form) => {
-    const e = {}
+  const e = {}
 
-    if (!form.nombre.trim()) e.nombre = "El nombre es obligatorio"
-    else if (form.nombre.trim().length > 30) e.nombre = "Máximo 30 caracteres"
-
-    const cvs = JSON.parse(localStorage.getItem("cvs")) || []
+  if (!form.nombre.trim()) e.nombre = 'El nombre es obligatorio'
+  else if (form.nombre.trim().length > 30) e.nombre = 'Máximo 30 caracteres'
+  else {
+    const cvs = JSON.parse(localStorage.getItem('cvs')) || []
     const ultimoCV = cvs[cvs.length - 1]
     const proyectos = ultimoCV?.proyectos || []
-
     const duplicado = proyectos.some(
-        p => p.nombre.toLowerCase() === form.nombre.toLowerCase()
+      p => p.nombre.toLowerCase() === form.nombre.trim().toLowerCase()
     )
+    if (duplicado) e.nombre = 'Ya existe un proyecto con ese nombre'
+  }
 
-    if (duplicado) e.nombre = "Ya existe un proyecto con ese nombre"
+  if (!form.rol.trim()) e.rol = 'El rol es obligatorio'
+  else if (form.rol.trim().length > 50) e.rol = 'Máximo 50 caracteres'
 
-    if (!form.descripcion.trim()) e.descripcion = "La descripción es obligatoria"
-    else if (form.descripcion.trim().length < 20) e.descripcion = "Mínimo 20 caracteres"
-    else if (form.descripcion.trim().length > 300) e.descripcion = "Máximo 300 caracteres"
+  if (!form.descripcion.trim()) e.descripcion = 'La descripción es obligatoria'
+  else if (form.descripcion.trim().length < 20) e.descripcion = 'Mínimo 20 caracteres'
+  else if (form.descripcion.trim().length > 300) e.descripcion = 'Máximo 300 caracteres'
 
-    if (!form.tecnologias.trim()) e.tecnologias = "Indica al menos una tecnología"
+  if (form.resultado.trim().length > 150) e.resultado = 'Máximo 150 caracteres'
 
-    if (!validarURL(form.urlRepo)) e.urlRepo = "URL del repositorio no válida"
-    if (!validarURL(form.urlDeploy)) e.urlDeploy = "URL del deploy no válida"
-    if (!validarURL(form.imagen)) e.imagen = "URL de imagen no válida"
+  if (form.herramientas.trim().length > 100) e.herramientas = 'Máximo 100 caracteres'
 
-    return e
+  if (!validarURL(form.url)) e.url = 'URL no válida'
+
+  return e
 }
 
 export const validarEducacion = (form) => {

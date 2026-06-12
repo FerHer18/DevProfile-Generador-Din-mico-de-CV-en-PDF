@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { generarPDF } from "../utils/pdfGenerator";
 import { obtenerCVPorId } from "../services/cvService";
 import SkillChart from "../componentes/SkillChart";
 
 function CVPreview() {
   const { id } = useParams()
+  const navigate = useNavigate()
   const [cv, setCv] = useState(null);
 
   useEffect(() => {
@@ -17,6 +18,11 @@ function CVPreview() {
     const cvs = JSON.parse(localStorage.getItem("cvs")) || [];
     if (cvs.length > 0) setCv(cvs[cvs.length - 1]);
   }, [id]);
+
+  const handleExportar = async () => {
+    await generarPDF(cv)
+    navigate('/')
+  }
 
   if (!cv) {
     return <div className="sin-cv">No existe información para mostrar.</div>;
@@ -95,7 +101,7 @@ function CVPreview() {
       </section>
 
       <div className="pdf-button-container">
-        <button onClick={() => generarPDF(cv)}>Exportar PDF</button>
+        <button onClick={handleExportar}>Exportar PDF</button>
       </div>
     </div>
   );

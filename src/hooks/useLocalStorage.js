@@ -1,3 +1,4 @@
+import { toast } from 'sonner'
 export const guardarDatosPersonales = (datos) => {
 
     const cvs = JSON.parse(localStorage.getItem("cvs")) || []
@@ -19,7 +20,7 @@ export const guardarDatosPersonales = (datos) => {
         JSON.stringify(cvs)
     )
 
-    alert("Datos guardados correctamente")
+    toast.success("Datos guardados correctamente")
 }
 
 export const obtenerDatosPersonales = () => {
@@ -45,15 +46,16 @@ export const guardarProyectos = (proyectoNuevo) => {
         "cvs",
         JSON.stringify(cvs)
     )
-    alert("Proyecto guardado correctamente")
+    toast.success("Proyecto guardado correctamente")
 }
 
 export const guardarEducacion = (educaciones) => {
+    console.log('I. guardarEducacion ejecutado', educaciones) //
 
     const cvs = JSON.parse(localStorage.getItem("cvs")) || []
 
     if (cvs.length === 0) {
-        alert("No existe ningún CV guardado")
+        toast.error("No existe ningún CV guardado")
         return
     }
 
@@ -64,6 +66,8 @@ export const guardarEducacion = (educaciones) => {
         "cvs",
         JSON.stringify(cvs)
     )
+    console.log('llegué al toast de educación')
+    toast.success("Educación guardada correctamente")
 }
 
 export const guardarIdiomas = (idiomas) => {
@@ -73,7 +77,7 @@ export const guardarIdiomas = (idiomas) => {
     ) || []
 
     if (cvs.length === 0) {
-        alert("No existe ningún CV guardado")
+        toast.error("No existe ningún CV guardado")
         return
     }
 
@@ -85,5 +89,5 @@ export const guardarIdiomas = (idiomas) => {
         JSON.stringify(cvs)
     )
 
-    alert("Idiomas guardados correctamente")
+    toast.success("Idiomas guardados correctamente")
 }

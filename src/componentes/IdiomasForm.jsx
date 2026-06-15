@@ -3,6 +3,7 @@ import { useNavigate, useParams, useOutletContext } from 'react-router-dom'
 import { guardarIdiomas } from '../hooks/useLocalStorage'
 import { validarIdioma } from '../hooks/useFormValidation'
 import { actualizarCV, obtenerCVPorId } from '../services/cvService'
+import { toast } from 'sonner'
 
 const NIVELES = ['Básico', 'Intermedio', 'Avanzado', 'Nativo']
 
@@ -53,7 +54,8 @@ function IdiomasForm() {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!id && idiomas.length === 0) {
-      setErrores({ idioma: 'Agrega al menos un idioma' })
+      //setErrores({ idioma: 'Agrega al menos un idioma' })
+      toast.warning("Agrega al menos un idioma")
       return
     }
 
@@ -65,7 +67,8 @@ function IdiomasForm() {
     guardarIdiomas(idiomas)
     const cvs = JSON.parse(localStorage.getItem('cvs')) || []
     const idCV = cvs[cvs.length - 1]?.id
-    alert(`CV generado exitosamente.\nID de tu CV: ${idCV}`)
+    //alert(`CV generado exitosamente.\nID de tu CV: ${idCV}`)
+    toast.success("CV generado exitosamente")
     navigate(`/preview/${idCV}`)
   }
 

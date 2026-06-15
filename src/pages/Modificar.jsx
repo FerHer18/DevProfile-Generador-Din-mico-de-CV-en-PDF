@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { obtenerCVPorId } from '../services/cvService';
 import Navbar from '../componentes/Navbar';
 import Footer from '../componentes/Footer';
+import { toast } from 'sonner'
 
 import '../styles/Modificar.css';
 
@@ -17,7 +18,8 @@ function Modificar() {
     const cv = obtenerCVPorId(idCV);
 
     if (!cv) {
-      alert('No existe un CV con ese ID');
+      //alert('No existe un CV con ese ID');
+      toast.error("No existe un CV con ese ID");
       return;
     }
 

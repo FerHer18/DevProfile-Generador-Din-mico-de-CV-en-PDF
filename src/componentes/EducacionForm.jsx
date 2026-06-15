@@ -3,6 +3,7 @@ import { useParams, useOutletContext } from 'react-router-dom'
 import { validarEducacion } from '../hooks/useFormValidation'
 import { guardarEducacion } from '../hooks/useLocalStorage'
 import { actualizarCV, obtenerCVPorId } from '../services/cvService'
+import { toast } from 'sonner'
 
 const registroVacio = {
   institucion: "",
@@ -57,17 +58,24 @@ function EducacionForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log('A. handleSubmit', { id, cantidad: educaciones.length }) //
+
     if (!id && educaciones.length === 0) {
-      alert("Agrega al menos una educación")
+      //alert("Agrega al menos una educación")
+      console.log('B. sin educaciones, abortando')
+      toast.warning("Agrega al menos una educación")
       return
     }
 
     if (id) {
+      console.log('C. modo edición')
       handleConfirmar(() => actualizarCV(id, { educacion: educaciones }))
       return
     }
 
+    console.log('D. modo creación, llamando handleConfirmar')
     handleConfirmar(() => guardarEducacion(educaciones))
+    console.log('E. handleConfirmar terminó')
   }
 
   return (

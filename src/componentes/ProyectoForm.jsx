@@ -1,9 +1,11 @@
+import '../styles/ProyectoForm.css'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams, useOutletContext } from 'react-router-dom'
 import { guardarSeccion, actualizarCV, obtenerCVPorId } from '../services/cvService'
 import { validarProyecto } from '../hooks/useFormValidation'
 import { useCV } from '../context/CVContext'
 import { guardarProyectos } from '../hooks/useLocalStorage'
+
 
 const estadoInicial = {
   nombre: '',
@@ -41,7 +43,7 @@ function ProyectoForm() {
   }
 
   const agregar = () => {
-    const e = validarProyecto(form)
+    const e = validarProyecto(form,proyectos)
     setErrores(e)
     if (Object.keys(e).length > 0) return
     const nuevos = [...proyectos, form]

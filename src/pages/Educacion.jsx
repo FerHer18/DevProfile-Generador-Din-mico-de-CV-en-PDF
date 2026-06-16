@@ -1,5 +1,4 @@
 import EducacionForm from '../componentes/EducacionForm'
-import '../styles/Educacion.css'
 
 function Educacion() {
   return (
@@ -8,6 +7,6 @@ function Educacion() {
       <EducacionForm />
     </div>
   )
-}
+} 
 
 export default Educacion

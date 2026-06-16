@@ -36,16 +36,15 @@ export const validaciones = (datosPersonales) => {
     return e
 }
 
-export const validarProyecto = (form) => {
+export const validarProyecto = (form, proyectosActuales = []) => {
   const e = {}
 
-  if (!form.nombre.trim()) e.nombre = 'El nombre es obligatorio'
-  else if (form.nombre.trim().length > 30) e.nombre = 'Máximo 30 caracteres'
-  else {
-    const cvs = JSON.parse(localStorage.getItem('cvs')) || []
-    const ultimoCV = cvs[cvs.length - 1]
-    const proyectos = ultimoCV?.proyectos || []
-    const duplicado = proyectos.some(
+  if (!form.nombre.trim()) {
+    e.nombre = 'El nombre es obligatorio'
+  } else if (form.nombre.trim().length > 30) {
+    e.nombre = 'Máximo 30 caracteres'
+  } else {
+    const duplicado = proyectosActuales.some(
       p => p.nombre.toLowerCase() === form.nombre.trim().toLowerCase()
     )
     if (duplicado) e.nombre = 'Ya existe un proyecto con ese nombre'

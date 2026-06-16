@@ -195,3 +195,19 @@ body.dark-mode .profile-image-form .card {
   background-color: #2a2a2a !important;
   box-shadow: none !important;
 }
+
+body.dark-mode [data-sonner-toaster] [data-sonner-toast] {
+  background: #1e1e1e !important;
+  color: #f0f0f0 !important;
+  border-color: #444 !important;
+}
+
+body.dark-mode [data-sonner-toaster] [data-sonner-toast] [data-button] {
+  background: #333 !important;
+  color: #f0f0f0 !important;
+}
+
+body.dark-mode [data-sonner-toaster] [data-sonner-toast] [data-cancel] {
+  background: transparent !important;
+  color: #aaa !important;
+}

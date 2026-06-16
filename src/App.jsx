@@ -12,10 +12,25 @@ import Idiomas from './pages/Idiomas';
 import Editor from './pages/Editor';
 import Preview from './pages/Preview';
 import ThemeToggle from './componentes/ThemeToggle'
+import { Toaster } from 'sonner'
+import { useState, useEffect } from 'react'
 import './App.css';
-import './styles/dark-mode.css';
+
 
 function App() {
+  const [isDark, setIsDark] = useState(
+    localStorage.getItem("theme") === "dark"
+  );
+
+  // Escucha cambios en la clase del body
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.body.classList.contains("dark-mode"));
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <CVProvider>
       <BrowserRouter>
@@ -44,6 +59,12 @@ function App() {
         </Routes>
       </BrowserRouter>
       <ThemeToggle />
+      <Toaster theme={isDark ? "dark" : "light"} 
+            position="top-right"
+            richColors
+            closeButton
+            duration={3500}
+      />
     </CVProvider>
     
   );

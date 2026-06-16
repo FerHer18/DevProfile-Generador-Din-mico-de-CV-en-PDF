@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import ProyectoForm from '../componentes/ProyectoForm'
-import '../styles/ProyectoForm.css'
 
 function Proyectos() {
   const [proyectos, setProyectos] = useState([])

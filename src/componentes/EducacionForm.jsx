@@ -1,3 +1,4 @@
+import '../styles/Educacion.css'
 import { useState, useEffect } from 'react'
 import { useParams, useOutletContext } from 'react-router-dom'
 import { validarEducacion } from '../hooks/useFormValidation'

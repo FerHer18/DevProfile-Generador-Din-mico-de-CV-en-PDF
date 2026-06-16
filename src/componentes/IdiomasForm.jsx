@@ -1,3 +1,4 @@
+import '../styles/Idiomas.css'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams, useOutletContext } from 'react-router-dom'
 import { guardarIdiomas } from '../hooks/useLocalStorage'
@@ -67,8 +68,7 @@ function IdiomasForm() {
     guardarIdiomas(idiomas)
     const cvs = JSON.parse(localStorage.getItem('cvs')) || []
     const idCV = cvs[cvs.length - 1]?.id
-    //alert(`CV generado exitosamente.\nID de tu CV: ${idCV}`)
-    toast.success("CV generado exitosamente")
+    toast.success(`CV generado exitosamente.\nID de tu CV: ${idCV}`)
     navigate(`/preview/${idCV}`)
   }
 

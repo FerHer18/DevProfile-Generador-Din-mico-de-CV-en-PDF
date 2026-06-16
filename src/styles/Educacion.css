@@ -1,6 +1,5 @@
 .educacion-form {
-  max-width: 650px;
-  margin: 0 auto;
+  width: 100%;
   padding: 24px;
   background: #fff;
   border: 1px solid #dce7dd;

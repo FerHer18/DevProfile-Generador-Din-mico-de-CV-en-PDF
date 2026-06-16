@@ -79,6 +79,12 @@ body:has(.crear-layout) {
   box-sizing: border-box;
 }
 
+.form-container {
+    width:100%;
+    max-width:950px;
+    margin:0 auto;
+}
+
 .bienvenida-cv {
   max-width: 800px;
   margin: 0 auto;

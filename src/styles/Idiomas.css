@@ -1,6 +1,5 @@
 .idiomas-form {
-  max-width: 750px;
-  margin: 0 auto;
+  width: 100%;
   padding: 24px;
   background: #fff;
   border: 1px solid #dce7dd;
@@ -55,7 +54,7 @@
   font-size: 0.8rem;
 }
 
-.btn-agregar {
+.idiomas-form .btn-agregar {
   margin-top: 0.5rem;
   padding: 0.6rem 1.4rem;
   background: transparent;
@@ -68,7 +67,7 @@
   transition: background 0.2s, color 0.2s;
 }
 
-.btn-agregar:hover {
+.idiomas-form .btn-agregar:hover {
   background: #214733;
   color: white;
 }
@@ -91,7 +90,7 @@
   box-shadow: 0 3px 8px rgba(111, 168, 125, 0.08);
 }
 
-.btn-eliminar {
+.idiomas-form .btn-eliminar {
   background: transparent;
   border: none;
   color: #1F513B;
@@ -103,11 +102,11 @@
   transition: background 0.2s;
 }
 
-.btn-eliminar:hover {
+.idiomas-form .btn-eliminar:hover {
   background: #fdecea;
 }
 
-.btn-principal {
+.idiomas-form .btn-principal {
   width: 100%;
   padding: 0.9rem;
   background: #214733;
@@ -120,6 +119,6 @@
   margin-top: 1rem;
 }
 
-.btn-principal:hover {
+.idiomas-form .btn-principal:hover {
   background: #1a3828;
 }

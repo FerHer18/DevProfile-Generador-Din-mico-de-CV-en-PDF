@@ -3,7 +3,7 @@ import { useCV } from '../context/CVContext'
 import Navbar from '../componentes/Navbar'
 import Footer from '../componentes/Footer'
 import '../styles/Crear.css'
-
+ 
 const SECCIONES = [
   { ruta: 'datos',       label: 'Datos Personales' },
   { ruta: 'imagen',      label: 'Imagen Profesional' },
@@ -54,20 +54,22 @@ function Crear() {
         </aside>
 
         <main className="content">
-          {mostrarBienvenida ? (
-            <div className="bienvenida-cv">
-              <h1>Bienvenido al Generador de Currículum Vitae</h1>
-              <p>Completa cada sección para construir tu CV profesional.</p>
-              <button
-                className="btn-principal"
-                onClick={() => navigate('datos')}
-              >
-                Comenzar
-              </button>
-            </div>
-          ) : (
-            <Outlet context={{ handleConfirmar }} />
-          )}
+          <div className="form-container">
+            {mostrarBienvenida ? (
+              <div className="bienvenida-cv">
+                <h1>Bienvenido al Generador de Currículum Vitae</h1>
+                <p>Completa cada sección para construir tu CV profesional.</p>
+                <button
+                  className="btn-principal"
+                  onClick={() => navigate('datos')}
+                >
+                  Comenzar
+                </button>
+              </div>
+            ) : (
+              <Outlet context={{ handleConfirmar }} />
+            )}
+          </div>
         </main>
       </section>
       <Footer />

@@ -15,7 +15,7 @@ function PersonalForm() {
     nombre: '',
     profesion: '',
     ciudad: '',
-    correo: '',
+    correo: '', 
     telefono: '',
     descripcion: '',
     enlaces: []
@@ -102,7 +102,7 @@ function PersonalForm() {
         />
         {errores.nombre && <span className="error">{errores.nombre}</span>}
       </div>
-
+ 
       <div>
         <label>Profesión / Carrera *</label>
         <input

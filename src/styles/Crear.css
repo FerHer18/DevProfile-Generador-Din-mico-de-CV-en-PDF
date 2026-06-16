@@ -71,18 +71,12 @@ body:has(.crear-layout) {
   background: white;
   color: #214733;
 }
-
+ 
 .content {
   flex: 1;
   padding: 3rem;
   background: #f5f5f5;
   box-sizing: border-box;
-}
-
-.form-container {
-    width:100%;
-    max-width:950px;
-    margin:0 auto;
 }
 
 .bienvenida-cv {

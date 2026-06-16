@@ -54,7 +54,6 @@ function Crear() {
         </aside>
 
         <main className="content">
-          <div className="form-container">
             {mostrarBienvenida ? (
               <div className="bienvenida-cv">
                 <h1>Bienvenido al Generador de Currículum Vitae</h1>
@@ -69,7 +68,6 @@ function Crear() {
             ) : (
               <Outlet context={{ handleConfirmar }} />
             )}
-          </div>
         </main>
       </section>
       <Footer />
